@@ -1,9 +1,9 @@
-# Readable
+# ChitChat
 ---
 
 ## Project Purpose:
 
-This game was built for the Udacity React Nanodegree Program. The purpose of the project is to demonstrate understanding of how Redux works in a React-based app.
+This game was built as the "Readables"  project for the Udacity React Nanodegree Program. The purpose of the project is to demonstrate understanding of how Redux works in a React-based content and comment web app. Users can post content to predefined categories, comment on their posts and other users' posts, edit and delete posts and comments and vote on posts and comments.
 
 ## How to Load the App
 You can run a hosted version of the app at ***TO BE ADDED***
