@@ -1,13 +1,14 @@
 
 const api = "http://localhost:5001/"
+const uuidv1 = require('uuid/v1');
 
 const headers = {
   'Authorization': "myToken1234",
   'Content-Type': 'application/json'
 }
-
+// requests to get data
 export const getCats = () =>
-  fetch(`${ api }categdories`, {headers})
+  fetch(`${ api }categories`, {headers})
     .then(res => {
       if (!res.ok) {
         throw res
@@ -77,6 +78,31 @@ export const getCommentDetails = (commentId) =>
     .catch(function(error) {
       console.log('fetch failed: ' ,  error.statusText);
     });
+
+// requests to add data
+export const addPost = (post) =>
+  fetch(`${api}posts`, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+      id: uuidv1(),
+      timestamp: Date.now(),
+      title: `${post.title}`,
+      body: `${post.body}`,
+      author: `${post.author}`,
+      category:  `${post.category}`
+     }),
+  })
+  .then(res => {
+    if (!res.ok) {
+      throw res
+    } else  return res.json()
+  })
+  .then(data => console.log("Add Post", data))
+  .catch(function(error) {
+    console.log('fetch failed: ' ,  error.statusText);
+  });
+
 
 export const editComment = (comment) =>
   fetch(`${api}comments/${comment.id}`, {
