@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
-import * as PostsAPI  from './PostsAPI.js'
+import * as PostsAPI  from '../utils/PostsAPI.js'
 
 class App extends Component {
   render() {
