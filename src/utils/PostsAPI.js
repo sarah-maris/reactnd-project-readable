@@ -72,17 +72,17 @@ export const getCommentDetails = (commentId) =>
     .catch( error => showError(error));
 
 // requests to add data
-export const addPost = (post) =>
+export const addPost = (title, body, author, category) =>
   fetch(`${api}posts`, {
     method: 'POST',
     headers: headers,
     body: JSON.stringify({
       id: uuidv1(),
       timestamp: Date.now(),
-      title: post.title,
-      body: post.body,
-      author: post.author,
-      category: post.category
+      title: title,
+      body: body,
+      author: author,
+      category: category
      }),
   })
   .then(res => {
@@ -93,16 +93,16 @@ export const addPost = (post) =>
   .then(data => console.log("Add Post", data))
   .catch( error => showError(error));
 
-  export const addComment = (comment) =>
+  export const addComment = (body, author, parentId) =>
     fetch(`${api}comments`, {
       method: 'POST',
       headers: headers,
       body: JSON.stringify({
         id: uuidv1(),
         timestamp: Date.now(),
-        body: comment.body,
-        author: comment.author,
-        parentId: comment.parentId
+        body: body,
+        author: author,
+        parentId: parentId
       })
     })
     .then(res => {
@@ -114,16 +114,16 @@ export const addPost = (post) =>
     .catch( error => showError(error));
 
 // requests to edit data
-export const editPost = (post) =>
-  fetch(`${ api}posts/${post.id}`, {
+export const editPost = (postId, title, body, author, category) =>
+  fetch(`${ api}posts/${postId}`, {
     method: 'PUT',
     headers: headers,
     body: JSON.stringify({
       lastEdit: Date.now(),
-      title: `${post.title}`,
-      body: `${post.body}`,
-      author: `${post.author}`,
-      category:  `${post.category}`
+      title: title,
+      body: body,
+      author: author,
+      category: category
      }),
   })
   .then(res => {
@@ -134,13 +134,14 @@ export const editPost = (post) =>
   .then(data => console.log("Add Post", data))
   .catch( error => showError(error));
 
-export const editComment = (comment) =>
-  fetch(`${api}comments/${comment.id}`, {
+export const editComment = (commentId, body) =>
+  fetch(`${api}comments/${commentId}`, {
     method: 'PUT',
     headers: headers,
     body: JSON.stringify({
-      timestamp: `${comment.timestamp}`,
-      body: `${comment.body}` })
+      timestamp: Date.now(),
+      body: body
+     })
   })
   .then(res => {
     if (!res.ok) {
@@ -196,15 +197,15 @@ export const deletePost = (postId) =>
   .then(data => console.log("Delete Post", data))
   .catch( error => showError(error));
 
-  export const deleteComment = (commentId) =>
-    fetch(`${api}comments/${commentId}`, {
-      method: 'DELETE',
-      headers: headers
-    })
-    .then(res => {
-      if (!res.ok) {
-        throw res
-      } else  return res.json()
-    })
-    .then(data => console.log("Delete Comment", data))
-    .catch( error => showError(error));
+export const deleteComment = (commentId) =>
+  fetch(`${api}comments/${commentId}`, {
+    method: 'DELETE',
+    headers: headers
+  })
+  .then(res => {
+    if (!res.ok) {
+      throw res
+    } else  return res.json()
+  })
+  .then(data => console.log("Delete Comment", data))
+  .catch( error => showError(error));
