@@ -38,7 +38,6 @@ export const getPosts = () =>
         throw res
       } else  return res.json()
     })
-  .then( data => console.log("All Posts", data))
   .catch( error => showError(error));
 
 export const getPostDetails = (postId) =>
