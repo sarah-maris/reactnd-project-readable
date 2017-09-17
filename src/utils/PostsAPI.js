@@ -18,7 +18,6 @@ export const getCats = () =>
         throw res
       } else  return res.json()
     })
-  .then(data => console.log("Categories", data))
   .catch( error => showError(error));
 
 export const getCatPosts = (cat) =>
