@@ -22,7 +22,7 @@ npm start
 
 A new browser window should automatically open displaying the app.  If it doesn't, navigate to [http://localhost:3000/](http://localhost:3000/) in your browser
 
-***ADD LOAD IMAGE***
+***ADD LOAD IMAGE and DIRECTIONS FOR STARTING SERVER***
 
 ## How to Use the App
 
@@ -32,6 +32,7 @@ A new browser window should automatically open displaying the app.  If it doesn'
 * [React Router Documentation](http://knowbody.github.io/react-router-docs/)
 * [React Training/React Router](https://reacttraining.com/react-router/web/api/BrowserRouter)
 * [React API](https://facebook.github.io/react/docs/react-api.html)
+* [Flexbox card formatting](https://codepen.io/ohansemmanuel/pen/Ljqdpa)
 
 ### Udacity Resources:
 * [Project server starter template](https://github.com/udacity/reactnd-project-readable-starter)

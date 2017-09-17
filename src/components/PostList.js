@@ -11,14 +11,14 @@ class PostList extends Component {
     const { posts } = this.props
 
     return (
-    <ul className="posts-list">
+    <section className="posts-list">
       {posts.map((post) => (
         <Post
           post={post}
           key={post.id}
         />
       ))}
-    </ul>
+    </section>
     )
   }
 }

@@ -7,27 +7,44 @@ class Post extends Component {
   }
 
   render() {
-    const { post } = this.props
-    const options = {
-      weekday: "long",
-      year: "2-digit",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit"
-    };
-    const date = new Date(post.timestamp)
-    const formattedDate = date.toLocaleTimeString("en-us", options)
+    const {post} = this.props
+
+
+   const day = (date) => date.toLocaleString("en-us", {
+       year: "2-digit",
+       month: "2-digit",
+       day: "2-digit"
+    });
+
+   const time = (date) => date.toLocaleString("en-us", {
+       hour: "2-digit",
+       minute: "2-digit"});
+
+
+
+   const postTime = time(new Date(post.timestamp));
+
+   const postDate = day(new Date(post.timestamp));
+
+   const currentDate = day(new Date());
+   console.log(postTime, postDate, currentDate)
+
+
+  const formattedDate = postDate == currentDate? postTime : postDate;
 
     return (
-    <li className="post">
-      <h3 className="post-title">
-        {post.title}
-      </h3>
+    <article className="post">
+      <div className="post-header">
+        <h3 className="post-title">
+          {post.title}
+        </h3>
+        <div className="post-meta">
+          <div className="author">{post.author}</div>
+          <div className="timestamp">{formattedDate}</div>
+        </div>
+      </div>
       <div className="post-body">{post.body}</div>
-      <div className="author">{post.author}</div>
-      <div className="timestamp">{formattedDate}</div>
-    </li>
+    </article>
     )
   }
 }
