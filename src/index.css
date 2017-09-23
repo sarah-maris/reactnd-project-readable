@@ -54,8 +54,6 @@ header {
 }
 
 /* default view */
-
-
 main {
     display:flex;
     flex-direction: column;
@@ -115,6 +113,7 @@ button:hover {
 .post-main {
   border: 3px solid #808080;
   border-radius: 10px;
+  flex-grow: 1;
   margin-left: 10px;
 }
 
@@ -136,7 +135,8 @@ button:hover {
   flex-wrap: wrap;
 }
 
-.author {
+.author,
+.category  {
   font-style: italic;
 }
 
@@ -187,9 +187,6 @@ button:hover {
   background-image: url('./images/up.svg');
 }
 
-.show-comments {
-    background-image: url('./images/chat-bubble.svg');
-}
 .votes {
   background-image: url('./images/heart.svg');
   background-size: 50px;
@@ -200,6 +197,9 @@ button:hover {
   width: 50px
 }
 
+.show-comments {
+    background-image: url('./images/chat-bubble.svg');
+}
 
 
 @media screen and (min-width: 414px) and (max-width: 736px) {
