@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as PostsAPI  from '../utils/PostsAPI.js'
-import PostList from './PostList.js'
+import PostList from './PostList'
 import logo from '../images/logo.png'
 import CatList from './CatList'
 
