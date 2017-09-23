@@ -28,24 +28,33 @@ class Post extends Component {
 
     return (
     <article className="post">
-      <div className="post-header">
-        <div className="post-meta">
-          <div className="author">{post.category}</div>
-          <div className="votes">{post.voteScore}</div>
+      <div className="post-sidebar">
+        <div className="voting">
+          <div className="up icon">up vote</div>
+          <div className="votes icon">{post.voteScore}</div>
+          <div className="down icon">up vote</div>
         </div>
-        <h3 className="post-title">
-          {post.title}
-        </h3>
-        <div className="post-meta">
-          <div className="author">{post.author}</div>
-          <div className="timestamp">{formattedDate}</div>
+        <div className="show-comments icon">show comments</div>
+      </div>
+      <div className="post-main">
+        <div className="post-header">
+          <div className="post-meta">
+            <div className="author">{post.category}</div>
+          </div>
+          <h3 className="post-title">
+            {post.title}
+          </h3>
+          <div className="post-meta">
+            <div className="author">{post.author}</div>
+            <div className="timestamp">{formattedDate}</div>
+          </div>
         </div>
-      </div>
-      <div className="post-body">{post.body}</div>
-      <div className="voting">
-        <div className="up-vote">up</div>
-        <div className="down-vote">down</div>
-      </div>
+        <div className="post-body">{post.body}</div>
+        <div className="voting">
+          <div className="up-vote">up</div>
+          <div className="down-vote">down</div>
+        </div>
+        </div>
     </article>
     )
   }

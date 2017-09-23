@@ -106,22 +106,27 @@ button:hover {
 }
 
 .post {
-  border: 3px solid #808080;
-  border-radius: 10px;
   color: #fff;
+  display:flex;
   flex: 0 0 100%;
   margin-bottom: 20px;
 }
 
+.post-main {
+  border: 3px solid #808080;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
 .post-current {
   border: 3px solid #1e4d81;
-  transform: scaleX(1.12);
 }
 
 .post-header {
   background: #808080;
   padding: 20px 20px 0 20px;
 }
+
 .post-current .post-header {
    background: #1e4d81;
 }
@@ -157,6 +162,45 @@ button:hover {
   color: #808080;
   padding: 20px;
 }
+
+/* post sidebar */
+.post-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.icon {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 25px;
+  font-size: 0;
+  height: 50px;
+  width: 50px;
+}
+
+.down {
+  background-image: url('./images/down.svg');
+}
+
+.up {
+  background-image: url('./images/up.svg');
+}
+
+.show-comments {
+    background-image: url('./images/chat-bubble.svg');
+}
+.votes {
+  background-image: url('./images/heart.svg');
+  background-size: 50px;
+  font-size: 18px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  width: 50px
+}
+
+
 
 @media screen and (min-width: 414px) and (max-width: 736px) {
   .title-block {

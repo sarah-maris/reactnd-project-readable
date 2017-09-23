@@ -33,6 +33,8 @@ A new browser window should automatically open displaying the app.  If it doesn'
 * [React Training/React Router](https://reacttraining.com/react-router/web/api/BrowserRouter)
 * [React API](https://facebook.github.io/react/docs/react-api.html)
 * [Flexbox card formatting](https://codepen.io/ohansemmanuel/pen/Ljqdpa)
+* [Icons as React Components](https://medium.com/@david.gilbertson/icons-as-react-components-de3e33cb8792)
+* [Glyph Icons](http://glyph.smarticons.co/)
 
 ### Udacity Resources:
 * [Project server starter template](https://github.com/udacity/reactnd-project-readable-starter)
