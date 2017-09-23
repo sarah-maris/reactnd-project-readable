@@ -29,12 +29,8 @@ class PostMain extends Component {
     return (
       <div className="post-main">
         <div className="post-header">
-          <div className="post-meta">
-            <div className="category">{post.category}</div>
-          </div>
-          <h3 className="post-title">
-            {post.title}
-          </h3>
+          <div className="category">{post.category}</div>
+          <h3 className="post-title">{post.title}</h3>
           <div className="post-meta">
             <div className="author">{post.author}</div>
             <div className="timestamp">{formattedDate}</div>

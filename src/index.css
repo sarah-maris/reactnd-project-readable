@@ -123,7 +123,7 @@ button:hover {
 
 .post-header {
   background: #808080;
-  padding: 20px 20px 0 20px;
+  padding: 10px 20px 0 20px;
 }
 
 .post-current .post-header {
@@ -154,7 +154,8 @@ button:hover {
 
 .post-body,
 .author,
-.timestamp {
+.timestamp,
+.category {
   margin: 10px 0;
 }
 
