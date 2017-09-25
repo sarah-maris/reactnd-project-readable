@@ -53,11 +53,11 @@ export function getCommentDetails(commentId) {
   }
 }
 
-export function addPost(title, body, author, category) {
+export function addPost({id, timestamp, title, body, author, category}) {
   return {
     type: ADD_POST,
-    //id,
-    //timestamp,
+    id,
+    timestamp,
     title,
     body,
     author,
