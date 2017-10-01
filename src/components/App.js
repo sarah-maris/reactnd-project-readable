@@ -4,6 +4,7 @@ import PostList from './PostList'
 import logo from '../images/logo.png'
 import CatList from './CatList'
 import {addPost} from '../actions'
+import { connect } from 'react-redux'
 
 /* //TEST CODE TO RUN WHEN SERVER STARTS
 PostsAPI.addPost("Test Post",
@@ -16,8 +17,8 @@ class App extends Component {
 
   state = {
     posts: [],
-    //commments: [],
-    //categories: []
+    commments: [],
+    categories: []
   }
 
   componentDidMount() {
@@ -26,30 +27,23 @@ class App extends Component {
     PostsAPI.getPosts().then((posts) => {
       this.setState({posts: posts});
     })
-
+*/
     PostsAPI.getCats().then((cats) => {
       this.setState({categories: cats.categories});
-    }) */
-    /* //TEST CODE TO RUN WHEN SERVER STARTS
+    })
+  //TEST CODE TO RUN WHEN SERVER STARTS
     .then( () => {
+      console.log(this.state)
       this.setState({
         categories: [...this.state.categories, {name: "react is one of the categories but there could be more", path: "reacts"}]
       })
-    }) */
-    const { store } = this.props
-
-    store.subscribe(() => {
-      this.setState(() => ({
-        posts: store.getState()
-      }))
     })
   }
 
   submitPost = () => {
     // to create unique IDs foe new posts
     const uuidv1 = require('uuid/v1');
-
-    this.props.store.dispatch(addPost({
+    const newPost = {
       id: uuidv1(),
       timestamp: Date.now(),
       title: 'New Post',
@@ -57,14 +51,15 @@ class App extends Component {
       body: 'this is the Newcvbncb Post body',
       author: 'Sarah',
       category: 'react'
-    }))
+    }
 
-  //this.input.value = ''
+    this.props.addNewPost(newPost)
+
 }
 
   render() {
 
-    const {posts, categories} = this.state
+    const {posts, comments} = this.props
 
     return (
       <div className="App">
@@ -82,13 +77,11 @@ class App extends Component {
         <hr className="blue line"/>
         <main>
           <nav className="sidebar">
-            {/* on hold...
-              <CatList cats={categories} />
-            */}
-              <button onClick={this.submitPost}>Submit</button>
+            <CatList cats={this.state.categories} />
+            <button onClick={this.submitPost}>Submit</button>
           </nav>
           <section className="posts-display">
-            <PostList posts={this.state.posts} />
+            <PostList posts={posts} />
           </section>
         </main>
       </div>
@@ -96,4 +89,21 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps (state) {
+  return { posts: state.posts,
+           comments: state.comments,
+           categories: state.categories
+         }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+      addNewPost: (data) => dispatch(addPost(data)),
+    //  getCats: () => dispatch(getCategories())
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)

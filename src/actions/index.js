@@ -65,11 +65,11 @@ export function addPost({id, timestamp, title, body, author, category}) {
   }
 }
 
-export function addComment(body, author, parentId) {
+export function addComment({id, timestamp, body, author, parentId}) {
   return {
     type: ADD_COMMENT,
-    //id,
-    //timestamp,
+    id,
+    timestamp,
     body,
     author,
     parentId
