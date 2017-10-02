@@ -3,7 +3,8 @@ import { combineReducers } from 'redux';
 import {
   ADD_POST,
   ADD_COMMENT,
-  GET_CATEGORIES
+  GET_CATEGORIES,
+  GET_ALL_POSTS
 } from '../actions'
 
 function posts(state=[], action) {
@@ -18,6 +19,9 @@ function posts(state=[], action) {
           author: action.author,
           category:  action.category
         }]
+
+        case GET_ALL_POSTS:
+          return action.posts
 
     default:
       return state

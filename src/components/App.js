@@ -5,14 +5,9 @@ import logo from '../images/logo.png'
 import CatList from './CatList'
 import {addPost} from '../actions'
 import { connect } from 'react-redux'
+import { loadPosts } from '../actions'
 
-/* //TEST CODE TO RUN WHEN SERVER STARTS
-PostsAPI.addPost("Test Post",
-   "This is the body",
-   "Sarah",
-   "react is one of the categories but there could be more"
- )
-*/
+
 class App extends Component {
 
   state = {
@@ -22,9 +17,11 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.props.loadAllPosts();
+
   /*
     // get posts on load
-    PostsAPI.getPosts().then((posts) => {
+    PostsAPI.getAllPosts().then((posts) => {
       this.setState({posts: posts});
     })
 */
@@ -59,7 +56,7 @@ class App extends Component {
 
   render() {
 
-    const {posts, comments} = this.props
+    const {  posts, comments} = this.props
 
     return (
       <div className="App">
@@ -98,7 +95,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-      addNewPost: (data) => dispatch(addPost(data)),
+    addNewPost: (data) => dispatch(addPost(data)),
+    loadAllPosts: () => dispatch(loadPosts())
     //  getCats: () => dispatch(getCategories())
   }
 }
