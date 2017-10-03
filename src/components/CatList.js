@@ -7,27 +7,24 @@ class CatList extends Component {
     cats: PropTypes.array.isRequired,
   }
 
-
   render() {
 
-      const {cats} = this.props
+    const {cats} = this.props
 
     return (
       <ul className="cat-list">
 
         <li className="cat-button all-cats">
-            All posts
+          All posts
+        </li>
+        {cats.map((cat, index) => (
+          <li className="cat-button" key={index}>
+            {cat.name}
           </li>
-          {cats.map((cat, index) => (
-            <li className="cat-button" key={index}>
-              {cat.name}
-            </li>
 
         ))}
       </ul>
-
-        )
-
+    )
   }
 }
 

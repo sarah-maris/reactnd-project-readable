@@ -5,7 +5,7 @@ import logo from '../images/logo.png'
 import CatList from './CatList'
 import {addPost} from '../actions'
 import { connect } from 'react-redux'
-import { loadPosts } from '../actions'
+import { loadPosts, loadCategories } from '../actions'
 
 
 class App extends Component {
@@ -18,23 +18,7 @@ class App extends Component {
 
   componentDidMount() {
     this.props.loadAllPosts();
-
-  /*
-    // get posts on load
-    PostsAPI.getAllPosts().then((posts) => {
-      this.setState({posts: posts});
-    })
-*/
-    PostsAPI.getCats().then((cats) => {
-      this.setState({categories: cats.categories});
-    })
-  //TEST CODE TO RUN WHEN SERVER STARTS
-    .then( () => {
-      console.log(this.state)
-      this.setState({
-        categories: [...this.state.categories, {name: "react is one of the categories but there could be more", path: "reacts"}]
-      })
-    })
+    this.props.loadCats();
   }
 
   submitPost = () => {
@@ -56,7 +40,7 @@ class App extends Component {
 
   render() {
 
-    const {  posts, comments} = this.props
+    const {  posts, comments, categories } = this.props
 
     return (
       <div className="App">
@@ -74,7 +58,7 @@ class App extends Component {
         <hr className="blue line"/>
         <main>
           <nav className="sidebar">
-            <CatList cats={this.state.categories} />
+            <CatList cats={ categories} />
             <button onClick={this.submitPost}>Submit</button>
           </nav>
           <section className="posts-display">
@@ -96,8 +80,8 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     addNewPost: (data) => dispatch(addPost(data)),
-    loadAllPosts: () => dispatch(loadPosts())
-    //  getCats: () => dispatch(getCategories())
+    loadAllPosts: () => dispatch(loadPosts()),
+    loadCats: () => dispatch(loadCategories())
   }
 }
 

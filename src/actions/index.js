@@ -13,30 +13,17 @@ export const VOTE_COMMENT = 'VOTE_COMMENT'
 export const DELETE_POST = 'DELETE_POST'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 
+// API params
 const api = "http://localhost:5001/"
 const uuidv1 = require('uuid/v1');
-const showError = (error) =>
-  console.log('fetch failed: ' , error.statusText);
-
 const headers = {
   'Authorization': "myToken1234",
   'Content-Type': 'application/json'
 }
+const showError = (error) =>
+  console.log('fetch failed: ' , error.statusText);
 
-
-export function getCategories() {
-  return {
-    type: GET_CATEGORIES
-  }
-}
-
-export function getCategoryPosts(category) {
-  return {
-    type: GET_CATEGORY_POSTS,
-    category
-  }
-}
-
+// load posts
 const getAllPosts = (posts) => {
   return {
     type: GET_ALL_POSTS,
@@ -56,6 +43,35 @@ export const loadPosts = () => {
       .catch( error => showError(error));
   }
 }
+
+// load categories
+const getCategories = (categories) => {
+  return {
+    type: GET_CATEGORIES,
+    categories
+  }
+}
+export const loadCategories = () => {
+  return dispatch => {
+    fetch(`${ api }categories`, {headers})
+      .then(res => {
+        if (!res.ok) {
+          throw res
+        } else  return res.json()
+      })
+    .then(json => dispatch(getCategories(json)))
+    .catch( error => showError(error));
+  }
+}
+
+export function getCategoryPosts(category) {
+  return {
+    type: GET_CATEGORY_POSTS,
+    category
+  }
+}
+
+
 
 export function getPostDetails(postId) {
   return {
