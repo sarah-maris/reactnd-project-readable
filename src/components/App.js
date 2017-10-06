@@ -3,22 +3,22 @@ import * as PostsAPI  from '../utils/PostsAPI.js'
 import PostList from './PostList'
 import logo from '../images/logo.png'
 import CatList from './CatList'
-import {addPost} from '../actions'
 import { connect } from 'react-redux'
-import { loadPosts, loadCategories } from '../actions'
+import { addPost, loadPosts, loadCategories, loadPostComments } from '../actions'
 
 
 class App extends Component {
 
   state = {
     posts: [],
-    commments: [],
+    commments: {},
     categories: []
   }
 
   componentDidMount() {
     this.props.loadAllPosts();
     this.props.loadCats();
+    //this.props.loadComments('8xf0y6ziyjabvozdd253nd');
   }
 
   submitPost = () => {
@@ -70,18 +70,19 @@ class App extends Component {
   }
 }
 
-function mapStateToProps (state) {
+const mapStateToProps = (state) => {
   return { posts: state.posts,
            comments: state.comments,
            categories: state.categories
          }
 }
 
-function mapDispatchToProps (dispatch) {
+const mapDispatchToProps = (dispatch) => {
   return {
     addNewPost: (data) => dispatch(addPost(data)),
     loadAllPosts: () => dispatch(loadPosts()),
-    loadCats: () => dispatch(loadCategories())
+    loadCats: () => dispatch(loadCategories()),
+    loadComments: (postId) => dispatch(loadPostComments(postId))
   }
 }
 

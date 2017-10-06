@@ -3,8 +3,9 @@ import { combineReducers } from 'redux';
 import {
   ADD_POST,
   ADD_COMMENT,
+  GET_ALL_POSTS,
   GET_CATEGORIES,
-  GET_ALL_POSTS
+  GET_POST_COMMENTS
 } from '../actions'
 
 function posts(state=[], action) {
@@ -20,25 +21,34 @@ function posts(state=[], action) {
           category:  action.category
         }]
 
-        case GET_ALL_POSTS:
-          return action.posts
+    case GET_ALL_POSTS:
+      return action.posts
 
     default:
       return state
   }
 }
 
-function comments(state=[], action) {
+function comments(state={}, action) {
 
   switch (action.type) {
+    // *** NOT TESTED ************************************
     case ADD_COMMENT:
-      return [...state, {
+      let postId = action.parentId;
+      return {...state,
+        [postId]: [ ...state, {
           id: action.id,
           timestamp: action.timestamp,
           body: action.body,
           author: action.author,
           parentId:  action.parentId
         }]
+      }
+    // ***************************************************
+    case GET_POST_COMMENTS:
+      let id = action.postId;
+      console.log(id)
+      return  {...state,  [id]: action.comments }
 
     default:
       return state

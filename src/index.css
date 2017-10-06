@@ -202,6 +202,10 @@ button:hover {
     background-image: url('./images/chat-bubble.svg');
 }
 
+.comments-list {
+    color: #808080;
+}
+
 
 @media screen and (min-width: 414px) and (max-width: 736px) {
   .title-block {

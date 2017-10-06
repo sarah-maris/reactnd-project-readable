@@ -2,7 +2,7 @@ export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS'
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'
 export const GET_POST_DETAILS = 'GET_POST_DETAILS'
-export const GET_COMMENTS = 'GET_COMMENTS'
+export const GET_POST_COMMENTS = 'GET_COMMENTS'
 export const GET_COMMENT_DETAILS = 'GET_COMMENT_DETAILS'
 export const ADD_POST = 'ADD_POST'
 export const ADD_COMMENT = 'ADD_COMMENT'
@@ -64,14 +64,35 @@ export const loadCategories = () => {
   }
 }
 
+
+// load post comments
+const getPostComments = (postId, comments)  => {
+  return {
+    type: GET_POST_COMMENTS,
+    postId,
+    comments
+  }
+}
+
+export const loadPostComments = (postId) => {
+  return dispatch => {
+      fetch(`${api}posts/${postId}/comments`, {headers})
+      .then(res => {
+        if (!res.ok) {
+          throw res
+        } else  return res.json()
+      })
+      .then(json => dispatch(getPostComments(postId, json)))
+      .catch( error => showError(error));
+  }
+}
+
 export function getCategoryPosts(category) {
   return {
     type: GET_CATEGORY_POSTS,
     category
   }
 }
-
-
 
 export function getPostDetails(postId) {
   return {
@@ -80,12 +101,6 @@ export function getPostDetails(postId) {
   }
 }
 
-export function getComments(postId) {
-  return {
-    type: GET_COMMENTS,
-    postId
-  }
-}
 
 export function getCommentDetails(commentId) {
   return {
