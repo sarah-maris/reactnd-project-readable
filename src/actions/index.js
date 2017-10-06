@@ -109,15 +109,36 @@ export function getCommentDetails(commentId) {
   }
 }
 
-export function addPost({id, timestamp, title, body, author, category}) {
+// requests to add data
+function addPost(post) {
   return {
     type: ADD_POST,
-    id,
-    timestamp,
-    title,
-    body,
-    author,
-    category
+    post
+  }
+}
+
+
+export const sendPost = (post) => {
+  return dispatch => {
+  fetch(`${api}posts`, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+      id: post.id,
+      timestamp: post.timestamp,
+      title: post.title,
+      body: post.body,
+      author: post.author,
+      category: post.category
+     }),
+  })
+  .then(res => {
+    if (!res.ok) {
+      throw res
+    } else  return res.json()
+  })
+  .then(json => dispatch(addPost(json)))
+  .catch( error => showError(error));
   }
 }
 

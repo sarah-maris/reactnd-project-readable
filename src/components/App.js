@@ -4,7 +4,7 @@ import PostList from './PostList'
 import logo from '../images/logo.png'
 import CatList from './CatList'
 import { connect } from 'react-redux'
-import { addPost, loadPosts, loadCategories, loadPostComments } from '../actions'
+import { addPost, loadPosts, loadCategories, loadPostComments, sendPost } from '../actions'
 
 
 class App extends Component {
@@ -28,7 +28,6 @@ class App extends Component {
       id: uuidv1(),
       timestamp: Date.now(),
       title: 'New Post',
-      meal: 'breakfast',
       body: 'this is the Newcvbncb Post body',
       author: 'Sarah',
       category: 'react'
@@ -79,7 +78,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addNewPost: (data) => dispatch(addPost(data)),
+    addNewPost: (data) => dispatch(sendPost(data)),
     loadAllPosts: () => dispatch(loadPosts()),
     loadCats: () => dispatch(loadCategories()),
     loadComments: (postId) => dispatch(loadPostComments(postId))
