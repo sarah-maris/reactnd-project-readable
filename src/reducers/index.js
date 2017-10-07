@@ -28,16 +28,12 @@ function comments(state={}, action) {
 
     case ADD_COMMENT:
       let comment = action.comment;
+      console.log(comment)
       let parentId = comment.parentId;
-      return {...state,
-        [parentId]: [ ...state,
-        comment
-        ]
-      }
+      return {...state, [parentId]: [...state[parentId],  comment]}
 
     case GET_POST_COMMENTS:
       let id = action.postId;
-      console.log(id)
       return  {...state,  [id]: action.comments }
 
     default:
