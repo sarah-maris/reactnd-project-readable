@@ -70,7 +70,7 @@ export const getCommentDetails = (commentId) =>
     .catch( error => showError(error));
 
 // requests to add data
-export const addPost = (title, body, author, category) =>
+export const sendPost = (title, body, author, category) =>
   fetch(`${api}posts`, {
     method: 'POST',
     headers: headers,
@@ -91,7 +91,7 @@ export const addPost = (title, body, author, category) =>
   .then(data => console.log("Add Post", data))
   .catch( error => showError(error));
 
-  export const addComment = (body, author, parentId) =>
+  export const sendComment = (body, author, parentId) =>
     fetch(`${api}comments`, {
       method: 'POST',
       headers: headers,

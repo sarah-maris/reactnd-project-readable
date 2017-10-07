@@ -14,7 +14,6 @@ class Post extends Component {
     this.props.loadComments(this.props.post.id);
   }
 
-
   render() {
     const {post, comments} = this.props
     const postComments = comments[post.id] || []
@@ -25,6 +24,7 @@ class Post extends Component {
       <PostMain post={post} />
       <div className="comments-list">
         {postComments.map(function(comment, index){
+          //  console.log(comment)
           return (
             <div key={ comment.id }>
               <p>{comment.body}</p>

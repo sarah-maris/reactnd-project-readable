@@ -25,19 +25,16 @@ function posts(state=[], action) {
 function comments(state={}, action) {
 
   switch (action.type) {
-    // *** NOT TESTED ************************************
+
     case ADD_COMMENT:
-      let postId = action.parentId;
+      let comment = action.comment;
+      let parentId = comment.parentId;
       return {...state,
-        [postId]: [ ...state, {
-          id: action.id,
-          timestamp: action.timestamp,
-          body: action.body,
-          author: action.author,
-          parentId:  action.parentId
-        }]
+        [parentId]: [ ...state,
+        comment
+        ]
       }
-    // ***************************************************
+
     case GET_POST_COMMENTS:
       let id = action.postId;
       console.log(id)

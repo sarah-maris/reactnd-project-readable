@@ -117,7 +117,6 @@ function addPost(post) {
   }
 }
 
-
 export const sendPost = (post) => {
   return dispatch => {
   fetch(`${api}posts`, {
@@ -142,17 +141,34 @@ export const sendPost = (post) => {
   }
 }
 
-export function addComment({id, timestamp, body, author, parentId}) {
+export function addComment(comment) {
   return {
     type: ADD_COMMENT,
-    id,
-    timestamp,
-    body,
-    author,
-    parentId
+    comment
   }
 }
-
+export const sendComment = (comment) => {
+  return dispatch => {
+  fetch(`${api}comments`, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+      id: comment.id,
+      timestamp: comment.timestamp,
+      body: comment.body,
+      author: comment.author,
+      parentId: comment.parentId
+     }),
+  })
+  .then(res => {
+    if (!res.ok) {
+      throw res
+    } else  return res.json()
+  })
+  .then(json => dispatch(addComment(json)))
+  .catch( error => showError(error));
+  }
+}
 export function editPost(postId, title, body, author, category) {
   return {
     type: EDIT_POST,
