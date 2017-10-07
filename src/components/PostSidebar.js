@@ -6,13 +6,18 @@ class PostSidebar extends Component {
     post: PropTypes.object.isRequired,
   }
 
+  upVote  = (e) =>
+    console.log("upVote")
+
+
+
   render() {
     const {post} = this.props
 
   return (
     <div className="post-sidebar">
       <div className="voting">
-        <div className="up icon">up vote</div>
+        <div className="up icon" onClick={this.upVote}>up vote</div>
         <div className="votes icon">{post.voteScore}</div>
         <div className="down icon">up vote</div>
       </div>

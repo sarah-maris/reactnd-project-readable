@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PostSidebar from './PostSidebar'
 import PostMain from './PostMain'
+import Comments from './Comments'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import {  loadPostComments } from '../actions'
@@ -21,18 +22,9 @@ class Post extends Component {
     return (
     <article className="post">
       <PostSidebar post={post} />
-      <PostMain post={post} />
-      <div className="comments-list">
-        {postComments.map(function(comment, index){
-          //  console.log(comment)
-          return (
-            <div key={ comment.id }>
-              <p>{comment.body}</p>
-              <p>{comment.author}</p>
-              <p>{comment.voteScore}</p>
-            </div>
-          )
-        })}
+      <div className="post-main">
+        <PostMain post={post} />
+        <Comments comments={postComments} />
       </div>
     </article>
     )

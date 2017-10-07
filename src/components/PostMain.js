@@ -27,7 +27,7 @@ class PostMain extends Component {
     const formattedDate = postDate === currentDate? postTime : postDate;
 
     return (
-      <div className="post-main">
+      <div>
         <div className="post-header">
           <div className="category">{post.category}</div>
           <h3 className="post-title">{post.title}</h3>
