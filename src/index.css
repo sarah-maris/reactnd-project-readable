@@ -114,7 +114,6 @@ button:hover {
   border: 3px solid #808080;
   border-radius: 10px;
   flex-grow: 1;
-  margin-left: 10px;
 }
 
 .post-current {
@@ -174,9 +173,8 @@ button:hover {
 .icon {
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 25px;
   font-size: 0;
-  height: 50px;
+  height: 30px;
   width: 50px;
 }
 
@@ -191,6 +189,7 @@ button:hover {
 .votes {
   background-image: url('./images/heart.svg');
   background-size: 50px;
+  color: #fff;
   font-size: 18px;
   height: 50px;
   line-height: 50px;
@@ -198,14 +197,36 @@ button:hover {
   width: 50px
 }
 
-.show-comments {
+.voting {
+  margin-right: 10px;
+}
+
+.comments-icon {
     background-image: url('./images/chat-bubble.svg');
+}
+.up-arrow {
+    background-image: url('./images/arrow-up.svg');
+}
+
+.down-arrow {
+    background-image: url('./images/arrow-down.svg');
 }
 
 .comments-list {
     color: #808080;
 }
 
+/* comments */
+.comment {
+  display: flex;
+}
+
+.comment-body {
+  border-left: 2px dashed;
+  border-top: 2px dashed;
+  padding: 10px;
+  width: 100%;
+}
 
 @media screen and (min-width: 414px) and (max-width: 736px) {
   .title-block {

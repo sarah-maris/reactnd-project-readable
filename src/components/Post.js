@@ -24,7 +24,9 @@ class Post extends Component {
       <PostSidebar post={post} />
       <div className="post-main">
         <PostMain post={post} />
-        <Comments comments={postComments} />
+        <Comments
+          comments={postComments}
+          id={post.id} />
       </div>
     </article>
     )

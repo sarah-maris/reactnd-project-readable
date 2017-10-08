@@ -10,8 +10,6 @@ class PostMain extends Component {
   render() {
     const {post} = this.props
 
-    const formattedDate = formatDate(post.timestamp);
-
     return (
       <div>
         <div className="post-header">
