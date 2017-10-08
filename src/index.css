@@ -202,14 +202,11 @@ button:hover {
 }
 
 .comments-icon {
-    background-image: url('./images/chat-bubble.svg');
-}
-.up-arrow {
-    background-image: url('./images/arrow-up.svg');
-}
-
-.down-arrow {
-    background-image: url('./images/arrow-down.svg');
+  background-image: url('./images/solid-bubble-message.svg');
+  font-size: 30px;
+  height: 40px;
+  padding: 40px 0;
+  text-align: center;
 }
 
 .comments-list {
