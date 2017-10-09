@@ -190,11 +190,30 @@ export function editComment(commentId, body) {
   }
 }
 
-export function votePost(postId, vote) {
+// voting
+const votePost = (post) => {
   return {
     type: VOTE_POST,
-    postId,
-    vote
+    post
+  }
+}
+
+export const sendPostVote = (postId, vote) => {
+  return dispatch => {
+   fetch(`${ api}posts/${postId}`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({
+          option: vote
+        })
+      })
+    .then(res => {
+      if (!res.ok) {
+        throw res
+      } else  return res.json()
+    })
+    .then(post => dispatch(votePost(post)))
+    .catch( error => showError(error));
   }
 }
 
