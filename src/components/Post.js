@@ -4,7 +4,7 @@ import PostMain from './PostMain'
 import Comments from './Comments'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import {  loadPostComments } from '../actions'
+import { loadPostComments } from '../actions'
 
 class Post extends Component {
   static propTypes = {

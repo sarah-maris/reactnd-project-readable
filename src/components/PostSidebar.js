@@ -10,7 +10,6 @@ class PostSidebar extends Component {
 
   vote  = (postId, vote) =>  {
     this.props.sendVote(postId, vote)
-    console.log("upVote")
   }
 
   render() {
@@ -35,9 +34,6 @@ class PostSidebar extends Component {
   )
   }
 }
-
-//export default PostSidebar
-
 
 const mapStateToProps = (state) => {
   return { posts: state.posts }

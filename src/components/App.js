@@ -35,8 +35,6 @@ class App extends Component {
     this.props.addNewPost(newPost)
   }
 
-;
-
   submitComment = () => {
       // to create unique IDs for new comments
       const uuidv1 = require('uuid/v1');
@@ -97,8 +95,7 @@ const mapDispatchToProps = (dispatch) => {
     addNewPost: (post) => dispatch(sendPost(post)),
     addNewComment: (comment) => dispatch(sendComment(comment)),
     loadAllPosts: () => dispatch(loadPosts()),
-    loadCats: () => dispatch(loadCategories()),
-    loadComments: (postId) => dispatch(loadPostComments(postId))
+    loadCats: () => dispatch(loadCategories())
   }
 }
 
