@@ -5,16 +5,16 @@ import formatDate from "../utils/helpers.js"
 
 class Comments extends Component {
   static propTypes = {
-    comments: PropTypes.array.isRequired,
-    id: PropTypes.string.isRequired
+    postComments: PropTypes.array.isRequired,
+    postId: PropTypes.string.isRequired
   }
 
   render() {
-    const {comments, id} = this.props
+    const {postComments, postId} = this.props
 
     return (
-        <div className="comments-list" id={id}>
-          {comments.map(function(comment){
+        <div className="comments-list" id={postId}>
+          {postComments.map(function(comment){
             return (
               <div className="comment" key={comment.id}>
                 <div className="voting">
@@ -36,4 +36,20 @@ class Comments extends Component {
   }
 }
 
-export default Comments
+const mapStateToProps = (state) => {
+  return { comments: state.comments }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  //  loadComments: (postId) => dispatch(loadPostComments(postId))
+  }
+}
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Comments)
+
+//export default Comments

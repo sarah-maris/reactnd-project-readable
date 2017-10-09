@@ -25,8 +25,8 @@ class Post extends Component {
       <div className="post-main">
         <PostMain post={post} />
         <Comments
-          comments={postComments}
-          id={post.id} />
+          postComments={postComments}
+          postId={post.id} />
       </div>
     </article>
     )
