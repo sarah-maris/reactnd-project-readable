@@ -217,11 +217,29 @@ export const sendPostVote = (postId, vote) => {
   }
 }
 
-export function voteComment(commentId, vote) {
+const voteComment = (comment) => {
   return {
     type: VOTE_COMMENT,
-    commentId,
-    vote
+    comment
+  }
+}
+
+export const sendCommentVote = (commentId, vote) => {
+  return dispatch => {
+   fetch(`${ api}comments/${commentId}`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({
+          option: vote
+        })
+      })
+    .then(res => {
+      if (!res.ok) {
+        throw res
+      } else  return res.json()
+    })
+    .then(comment => dispatch(voteComment(comment)))
+    .catch( error => showError(error));
   }
 }
 

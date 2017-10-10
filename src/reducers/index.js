@@ -6,7 +6,8 @@ import {
   GET_ALL_POSTS,
   GET_CATEGORIES,
   GET_POST_COMMENTS,
-  VOTE_POST
+  VOTE_POST,
+  VOTE_COMMENT
 } from '../actions'
 
 function posts(state=[], action) {
@@ -32,14 +33,21 @@ function comments(state={}, action) {
   switch (action.type) {
 
     case ADD_COMMENT:
-      let comment = action.comment;
-      console.log(comment)
-      let parentId = comment.parentId;
+      const comment = action.comment;
+      const parentId = comment.parentId;
       return {...state, [parentId]: [...state[parentId],  comment]}
 
     case GET_POST_COMMENTS:
-      let id = action.postId;
-      return  {...state,  [id]: action.comments }
+      const postId = action.postId;
+      return  {...state,  [postId]: action.comments }
+
+    case VOTE_COMMENT:
+      const commentId = action.comment.id
+      const prnId = action.comment.parentId;
+      return {...state,
+        [prnId]: state[prnId].map(
+            (comment) => comment.id === commentId ?
+            action.comment : comment) }
 
     default:
       return state
