@@ -15,7 +15,6 @@ export const DELETE_COMMENT = 'DELETE_COMMENT'
 
 // API params
 const api = "http://localhost:5001/"
-const uuidv1 = require('uuid/v1');
 const headers = {
   'Authorization': "myToken1234",
   'Content-Type': 'application/json'

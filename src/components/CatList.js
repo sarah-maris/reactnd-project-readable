@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import Post from './Post'
 
 class CatList extends Component {
   static propTypes = {

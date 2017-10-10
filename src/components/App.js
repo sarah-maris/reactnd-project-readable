@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import * as PostsAPI  from '../utils/PostsAPI.js'
 import PostList from './PostList'
 import logo from '../images/logo.png'
 import CatList from './CatList'
 import { connect } from 'react-redux'
-import { loadPosts, loadCategories, loadPostComments, sendPost, sendComment } from '../actions'
+import { loadPosts, loadCategories,  sendPost, sendComment } from '../actions'
 
 
 class App extends Component {
@@ -38,7 +37,7 @@ class App extends Component {
   submitComment = () => {
       // to create unique IDs for new comments
       const uuidv1 = require('uuid/v1');
-      const time = new Date;
+      const time = new Date();
       const newComment = {
         id: uuidv1(),
         timestamp: time,
@@ -52,7 +51,7 @@ class App extends Component {
 
   render() {
 
-    const {  posts, comments, categories } = this.props
+    const {  posts, categories } = this.props
 
     return (
       <div className="App">
