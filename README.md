@@ -35,6 +35,7 @@ A new browser window should automatically open displaying the app.  If it doesn'
 * [Flexbox card formatting](https://codepen.io/ohansemmanuel/pen/Ljqdpa)
 * [Icons as React Components](https://medium.com/@david.gilbertson/icons-as-react-components-de3e33cb8792)
 * [Glyph Icons](http://glyph.smarticons.co/)
+* [Redux Form](https://redux-form.com/7.1.1/)
 
 ### Udacity Resources:
 * [Project server starter template](https://github.com/udacity/reactnd-project-readable-starter)

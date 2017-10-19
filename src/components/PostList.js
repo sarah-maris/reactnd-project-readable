@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import Post from './Post'
+import AddPost from './AddPost'
 
 class PostList extends Component {
   static propTypes = {
@@ -12,6 +13,7 @@ class PostList extends Component {
 
     return (
     <section className="posts-list">
+      <AddPost />
       {posts.map((post) => (
         <Post
           post={post}
