@@ -22,3 +22,5 @@ yarn-error.log*
 
 #sam files
 misc/
+
+/server/node_modules
