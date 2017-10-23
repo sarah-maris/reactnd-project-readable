@@ -1,4 +1,5 @@
 const clone = require('clone')
+const posts = require('./posts')
 
 let db = {}
 
@@ -11,7 +12,7 @@ const defaultData = {
     author: 'thingtwo',
     voteScore: 6,
     deleted: false,
-    parentDeleted: false 
+    parentDeleted: false
   },
   "8tu4bsun805n8un48ve89": {
     id: '8tu4bsun805n8un48ve89',
@@ -59,7 +60,7 @@ function get (token, id) {
     res(
       comments[id].deleted || comments[id].parentDeleted
         ? {}
-        : comments[id]      
+        : comments[id]
       )
   })
 }
@@ -78,7 +79,8 @@ function add (token, comment) {
       deleted: false,
       parentDeleted: false
     }
-     
+
+    posts.incrementCommentCounter(token, comment.parentId, 1)
     res(comments[comment.id])
   })
 }
@@ -115,6 +117,7 @@ function disable (token, id) {
     return new Promise((res) => {
       let comments = getData(token)
       comments[id].deleted = true
+      posts.incrementCommentCounter(token, comments[id].parentId, -1)
       res(comments[id])
     })
 }
