@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 const AddPost = props => {
-  const { handleSubmit, pristine, reset, submitting } = props;
+  const { handleSubmit } = props;
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -13,6 +13,17 @@ const AddPost = props => {
             component="input"
             type="text"
             placeholder="Your Name"
+          />
+        </div>
+      </div>
+      <div>
+        <label>I want to talk about</label>
+        <div>
+          <Field
+            name="title"
+            component="input"
+            type="text"
+            placeholder="Post title"
           />
         </div>
       </div>
@@ -30,19 +41,19 @@ const AddPost = props => {
       <div>
         <label>My Two Cents</label>
         <div>
-          <Field name="postBody" component="textarea" />
+          <Field name="postBody"
+            component="textarea"
+            type="text"
+          placeholder="Your comment"/>
         </div>
       </div>
       <div>
-        <button type="submit" disabled={pristine || submitting}>Submit</button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
-        </button>
+        <button type="submit" >Submit</button>
       </div>
     </form>
   );
 };
 
 export default reduxForm({
-  form: 'simple', // a unique identifier for this form
+  form: 'addPostForm',
 })(AddPost);
