@@ -19,21 +19,6 @@ class App extends Component {
     this.props.loadCats();
   }
 
-  submitPost = () => {
-    // to create unique IDs for new posts
-    const uuidv1 = require('uuid/v1');
-    const newPost = {
-      id: uuidv1(),
-      timestamp: Date.now(),
-      title: 'New Post',
-      body: 'this is the New Post body',
-      author: 'Sarah',
-      category: 'react'
-    }
-
-    this.props.addNewPost(newPost)
-  }
-
   submitComment = () => {
       // to create unique IDs for new comments
       const uuidv1 = require('uuid/v1');
@@ -70,7 +55,6 @@ class App extends Component {
         <main>
           <nav className="sidebar">
             <CatList cats={ categories} />
-            <button onClick={this.submitPost}>Add Posts</button>
             <button onClick={this.submitComment}>Add Comment</button>
           </nav>
           <section className="posts-display">

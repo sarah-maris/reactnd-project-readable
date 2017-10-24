@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-const AddPost = props => {
+const PostForm = props => {
   const { handleSubmit } = props;
   return (
     <form onSubmit={handleSubmit}>
@@ -56,4 +56,4 @@ const AddPost = props => {
 
 export default reduxForm({
   form: 'addPostForm',
-})(AddPost);
+})(PostForm);

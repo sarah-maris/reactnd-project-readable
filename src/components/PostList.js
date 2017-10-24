@@ -2,16 +2,24 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Post from './Post'
-import AddPost from './AddPost'
+import PostForm from './PostForm'
 import { sendPost } from '../actions'
 import { reset } from 'redux-form';
+import Modal from 'react-modal'
 
 class PostList extends Component {
   static propTypes = {
     posts: PropTypes.array.isRequired,
   }
 
-  submitPost = (post) => {
+  state = {
+    postModalOpen: false
+  }
+
+  openAddPostModal = () => this.setState(() => ({ postModalOpen: true }))
+  closeAddPostModal = () => this.setState(() => ({ postModalOpen: false }))
+
+  addPost = (post) => {
     // to create unique IDs for new posts
     const uuidv1 = require('uuid/v1');
     const newPost = {
@@ -24,21 +32,35 @@ class PostList extends Component {
     }
     this.props.addNewPost(newPost)
     this.props.resetPostForm()
+    this.closeAddPostModal()
   }
 
   render() {
     const { posts } = this.props
+    const { postModalOpen } = this.state
 
     return (
-    <section className="posts-list">
-      <AddPost onSubmit={this.submitPost} />
-      {posts.map((post) => (
-        <Post
-          post={post}
-          key={post.id}
-        />
-      ))}
-    </section>
+    <div>
+      <Modal
+        className='modal'
+        overlayClassName='overlay'
+        isOpen={postModalOpen}
+        onRequestClose={this.closeAddPostModal}
+        contentLabel='Modal'
+      >
+        {postModalOpen && <PostForm onSubmit={this.addPost} />}
+      </Modal>
+      <button onClick={this.openAddPostModal} className="add-button">Add New Post</button>
+      <section className="posts-list">
+        {posts.map((post) => (
+          <Post
+            post={post}
+            key={post.id}
+          />
+        ))}
+      </section>
+    </div>
+
     )
   }
 }
