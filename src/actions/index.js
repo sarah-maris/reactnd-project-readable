@@ -8,7 +8,7 @@ export const ADD_POST = 'ADD_POST'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const UPDATE_POST = 'UPDATE_POST'
-export const VOTE_COMMENT = 'VOTE_COMMENT'
+export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 export const DELETE_POST = 'DELETE_POST'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 
@@ -198,12 +198,33 @@ export const editPost = (post) => {
   }
 }
 
-export function editComment(commentId, body) {
+const updateComment = (comment) => {
   return {
-    type: EDIT_COMMENT,
-    //timestamp,
-    commentId,
-    body
+    type: UPDATE_COMMENT,
+    comment
+  }
+}
+
+export const editComment = (comment) => {
+  return dispatch => {
+  fetch(`${api}comments`, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+      id: comment.id,
+      timestamp: comment.timestamp,
+      body: comment.body,
+      author: comment.author,
+      parentId: comment.parentId
+     }),
+  })
+  .then(res => {
+    if (!res.ok) {
+      throw res
+    } else  return res.json()
+  })
+  .then(json => dispatch(updateComment(json)))
+  .catch( error => showError(error));
   }
 }
 
@@ -227,12 +248,6 @@ export const sendPostVote = (postId, vote) => {
   }
 }
 
-const voteComment = (comment) => {
-  return {
-    type: VOTE_COMMENT,
-    comment
-  }
-}
 
 export const sendCommentVote = (commentId, vote) => {
   return dispatch => {
@@ -248,7 +263,7 @@ export const sendCommentVote = (commentId, vote) => {
         throw res
       } else  return res.json()
     })
-    .then(comment => dispatch(voteComment(comment)))
+    .then(comment => dispatch(updateComment(comment)))
     .catch( error => showError(error));
   }
 }

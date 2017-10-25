@@ -7,7 +7,7 @@ import {
   GET_CATEGORIES,
   GET_POST_COMMENTS,
   UPDATE_POST,
-  VOTE_COMMENT
+  UPDATE_COMMENT
 } from '../actions'
 
 function posts(state=[], action) {
@@ -41,7 +41,7 @@ function comments(state={}, action) {
       const postId = action.postId;
       return  {...state,  [postId]: action.comments }
 
-    case VOTE_COMMENT:
+    case UPDATE_COMMENT:
       const commentId = action.comment.id
       const prnId = action.comment.parentId;
       return {...state,

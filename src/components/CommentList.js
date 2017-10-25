@@ -13,6 +13,7 @@ class CommentList extends Component {
     postComments: PropTypes.array.isRequired,
     postId: PropTypes.string.isRequired
   }
+
   state = {
     commentModalOpen: false
   }
@@ -20,17 +21,17 @@ class CommentList extends Component {
   openAddCommentModal = () => this.setState(() => ({ commentModalOpen: true }))
   closeAddCommentModal = () => this.setState(() => ({ commentModalOpen: false }))
 
-  submitComment = (post) => {
+  submitComment = (comment) => {
     // to create unique IDs for new posts
     const uuidv1 = require('uuid/v1');
-    const newPost = {
+    const newComment = {
       id: uuidv1(),
       timestamp: Date.now(),
-      body: post.body,
-      author: post.author,
+      body: comment.body,
+      author: comment.author,
       parentId: this.props.postId
     }
-    this.props.addNewComment(newPost)
+    this.props.addNewComment(newComment)
     this.props.resetCommentForm()
     this.closeAddCommentModal()
   }
