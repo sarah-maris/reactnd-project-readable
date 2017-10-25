@@ -5,8 +5,7 @@ import PostForm from './PostForm'
 import CommentList from './CommentList'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { loadPostComments, sendComment, editPost } from '../actions'
-import CommentForm from './CommentForm'
+import { loadPostComments, editPost } from '../actions'
 import { reset } from 'redux-form'
 import Modal from 'react-modal'
 
@@ -16,8 +15,7 @@ class Post extends Component {
   }
 
   state = {
-    postModalOpen: false,
-    commentModalOpen: false
+    postModalOpen: false
   }
 
   componentDidMount() {
@@ -26,8 +24,6 @@ class Post extends Component {
 
   openEditPostModal = () => this.setState(() => ({ postModalOpen: true }))
   closeEditPostModal = () => this.setState(() => ({ postModalOpen: false }))
-  openAddCommentModal = () => this.setState(() => ({ commentModalOpen: true }))
-  closeAddCommentModal = () => this.setState(() => ({ commentModalOpen: false }))
 
   editPost = (post) => {
     const updatedPost = {
@@ -43,24 +39,10 @@ class Post extends Component {
     this.closeEditPostModal()
   }
 
-  submitComment = (post) => {
-    // to create unique IDs for new posts
-    const uuidv1 = require('uuid/v1');
-    const newPost = {
-      id: uuidv1(),
-      timestamp: Date.now(),
-      body: post.body,
-      author: post.author,
-      parentId: this.props.post.id
-    }
-    this.props.addNewComment(newPost)
-    this.props.resetCommentForm()
-    this.closeAddCommentModal()
-  }
   render() {
     const { post, comments } = this.props
     const postComments = comments[post.id] || []
-    const { postModalOpen, commentModalOpen } = this.state
+    const { postModalOpen } = this.state
 
     return (
       <div>
@@ -75,15 +57,6 @@ class Post extends Component {
             initialValues={post}
             onSubmit={this.editPost} />}
         </Modal>
-        <Modal
-          className='modal comment-modal'
-          overlayClassName='overlay'
-          isOpen={commentModalOpen}
-          onRequestClose={this.closeAddCommentModal}
-          contentLabel='Modal'
-        >
-          {commentModalOpen && <CommentForm onSubmit={this.submitComment} />}
-        </Modal>
         <article className="post">
           <PostSidebar post={post} />
           <div className="post-main">
@@ -92,7 +65,6 @@ class Post extends Component {
               postComments={postComments}
               postId={post.id} />
           </div>
-          <button onClick={this.openAddCommentModal} className="add-button">Add Comment</button>
           <button onClick={this.openEditPostModal} className="add-button">Edit Post</button>
         </article>
       </div>
@@ -101,16 +73,16 @@ class Post extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { comments: state.comments }
+  return {
+    comments: state.comments
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     loadComments: (postId) => dispatch(loadPostComments(postId)),
-    addNewComment: (comment) => dispatch(sendComment(comment)),
     updatePost: (post) => dispatch(editPost(post)),
-    resetPostForm:() => dispatch(reset('postForm')),
-    resetCommentForm:() => dispatch(reset('commentForm'))
+    resetPostForm:() => dispatch(reset('postForm'))
   }
 }
 
