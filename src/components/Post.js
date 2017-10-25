@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PostSidebar from './PostSidebar'
 import PostMain from './PostMain'
 import PostForm from './PostForm'
-import Comments from './Comments'
+import CommentList from './CommentList'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { loadPostComments, sendComment, editPost } from '../actions'
@@ -88,7 +88,7 @@ class Post extends Component {
           <PostSidebar post={post} />
           <div className="post-main">
             <PostMain post={post} />
-            <Comments
+            <CommentList
               postComments={postComments}
               postId={post.id} />
           </div>
