@@ -55,5 +55,5 @@ const PostForm = props => {
 };
 
 export default reduxForm({
-  form: 'addPostForm'
+  form: 'postForm'
 })(PostForm);

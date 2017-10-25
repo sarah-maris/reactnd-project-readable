@@ -19,21 +19,6 @@ class App extends Component {
     this.props.loadCats();
   }
 
-  submitComment = () => {
-      // to create unique IDs for new comments
-      const uuidv1 = require('uuid/v1');
-      const time = new Date();
-      const newComment = {
-        id: uuidv1(),
-        timestamp: time,
-        body: `This is comment ${time.getMinutes()}:${time.getSeconds()}`,
-        author: 'Sarah',
-        parentId: '8xf0y6ziyjabvozdd253nd'
-      }
-
-      this.props.addNewComment(newComment)
-    }
-
   render() {
 
     const {  posts, categories } = this.props
@@ -55,7 +40,6 @@ class App extends Component {
         <main>
           <nav className="sidebar">
             <CatList cats={ categories} />
-            <button onClick={this.submitComment}>Add Comment</button>
           </nav>
           <section className="posts-display">
             <PostList posts={posts} />

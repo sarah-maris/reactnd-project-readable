@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-const AddComment = props => {
+const CommentForm = props => {
   const { handleSubmit } = props;
   return (
     <form onSubmit={handleSubmit}>
@@ -33,5 +33,5 @@ const AddComment = props => {
 };
 
 export default reduxForm({
-  form: 'addCommentForm',
-})(AddComment);
+  form: 'commentForm',
+})(CommentForm);
