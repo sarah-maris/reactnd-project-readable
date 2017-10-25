@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import PostList from './PostList'
 import logo from '../images/logo.png'
 import CatList from './CatList'
