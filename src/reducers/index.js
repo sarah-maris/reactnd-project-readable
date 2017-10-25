@@ -6,7 +6,7 @@ import {
   GET_ALL_POSTS,
   GET_CATEGORIES,
   GET_POST_COMMENTS,
-  VOTE_POST,
+  UPDATE_POST,
   VOTE_COMMENT
 } from '../actions'
 
@@ -19,7 +19,7 @@ function posts(state=[], action) {
     case GET_ALL_POSTS:
       return action.posts
 
-    case VOTE_POST:
+    case UPDATE_POST:
       return state.map(
          (post) => post.id === action.post.id ? action.post : post )
 

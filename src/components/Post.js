@@ -5,7 +5,7 @@ import PostForm from './PostForm'
 import Comments from './Comments'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { loadPostComments, sendComment, sendPost } from '../actions'
+import { loadPostComments, sendComment, editPost } from '../actions'
 import AddComment from './AddComment'
 import { reset } from 'redux-form'
 import Modal from 'react-modal'
@@ -27,11 +27,9 @@ class Post extends Component {
   closeEditPostModal = () => this.setState(() => ({ postModalOpen: false }))
 
   editPost = (post) => {
-    // to create unique IDs for new posts
-    const uuidv1 = require('uuid/v1');
     const updatedPost = {
-      id: uuidv1(),
-      timestamp: Date.now(),
+      id: post.id,
+      timestamp: Date.now(), //update with edit time
       title: post.title,
       body: post.body,
       author: post.author,
@@ -98,7 +96,7 @@ const mapDispatchToProps = (dispatch) => {
     loadComments: (postId) => dispatch(loadPostComments(postId)),
     addNewComment: (comment) => dispatch(sendComment(comment)),
     resetCommentForm:() => dispatch(reset('addCommentForm')),
-    updatePost: (post) => dispatch(sendPost(post)),
+    updatePost: (post) => dispatch(editPost(post)),
     resetPostForm:() => dispatch(reset('addPostForm'))
   }
 }

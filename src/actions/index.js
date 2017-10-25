@@ -6,9 +6,8 @@ export const GET_POST_COMMENTS = 'GET_COMMENTS'
 export const GET_COMMENT_DETAILS = 'GET_COMMENT_DETAILS'
 export const ADD_POST = 'ADD_POST'
 export const ADD_COMMENT = 'ADD_COMMENT'
-export const EDIT_POST = 'EDIT_POST'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
-export const VOTE_POST = 'VOTE_POST'
+export const UPDATE_POST = 'UPDATE_POST'
 export const VOTE_COMMENT = 'VOTE_COMMENT'
 export const DELETE_POST = 'DELETE_POST'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
@@ -63,7 +62,6 @@ export const loadCategories = () => {
   }
 }
 
-
 // load post comments
 const getPostComments = (postId, comments)  => {
   return {
@@ -99,7 +97,6 @@ export function getPostDetails(postId) {
     postId
   }
 }
-
 
 export function getCommentDetails(commentId) {
   return {
@@ -168,15 +165,36 @@ export const sendComment = (comment) => {
   .catch( error => showError(error));
   }
 }
-export function editPost(postId, title, body, author, category) {
+
+// used for editing and voting
+const updatePost = (post) => {
   return {
-    type: EDIT_POST,
-    //lastEdit,
-    postId,
-    title,
-    body,
-    author,
-    category
+    type: UPDATE_POST,
+    post
+  }
+}
+
+export const editPost = (post) => {
+  return dispatch => {
+  fetch(`${api}posts`, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+      id: post.id,
+      timestamp: post.timestamp,
+      title: post.title,
+      body: post.body,
+      author: post.author,
+      category: post.category
+     }),
+  })
+  .then(res => {
+    if (!res.ok) {
+      throw res
+    } else  return res.json()
+  })
+  .then(json => dispatch(updatePost(json)))
+  .catch( error => showError(error));
   }
 }
 
@@ -190,13 +208,6 @@ export function editComment(commentId, body) {
 }
 
 // voting
-const votePost = (post) => {
-  return {
-    type: VOTE_POST,
-    post
-  }
-}
-
 export const sendPostVote = (postId, vote) => {
   return dispatch => {
    fetch(`${ api}posts/${postId}`, {
@@ -211,7 +222,7 @@ export const sendPostVote = (postId, vote) => {
         throw res
       } else  return res.json()
     })
-    .then(post => dispatch(votePost(post)))
+    .then(post => dispatch(updatePost(post)))
     .catch( error => showError(error));
   }
 }
