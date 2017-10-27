@@ -9,7 +9,7 @@ class PostForm extends Component {
     const { handleSubmit, categories } = this.props
 
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="post-form">
         <div>
           <label>Author</label>
           <div>
@@ -18,6 +18,7 @@ class PostForm extends Component {
               component="input"
               type="text"
               placeholder="Your Name"
+              className="post-form-author"
             />
           </div>
         </div>
@@ -29,6 +30,7 @@ class PostForm extends Component {
               component="input"
               type="text"
               placeholder="Post title"
+              className="post-form-title"
             />
           </div>
         </div>
@@ -38,6 +40,7 @@ class PostForm extends Component {
             <Field
               name="category"
               component="select"
+              className="post-form-category"
             >
               <option/>
               {categories.map((category, index) => (
@@ -55,11 +58,13 @@ class PostForm extends Component {
             <Field name="body"
               component="textarea"
               type="text"
-            placeholder="Your comment"/>
+              placeholder="Your comment"
+              className="post-form-body"
+            />
           </div>
         </div>
         <div>
-          <button type="submit" >Submit</button>
+          <button type="submit" className="post-form-button">Submit</button>
         </div>
       </form>
       )

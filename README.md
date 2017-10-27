@@ -36,6 +36,7 @@ A new browser window should automatically open displaying the app.  If it doesn'
 * [Icons as React Components](https://medium.com/@david.gilbertson/icons-as-react-components-de3e33cb8792)
 * [Glyph Icons](http://glyph.smarticons.co/)
 * [Redux Form](https://redux-form.com/7.1.1/)
+* [CSS Tricks: Considerations for Styling a Modal](https://css-tricks.com/considerations-styling-modal/)
 
 ### Udacity Resources:
 * [Project server starter template](https://github.com/udacity/reactnd-project-readable-starter)

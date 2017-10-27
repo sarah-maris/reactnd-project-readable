@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 const CommentForm = props => {
   const { handleSubmit } = props;
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="comment-form">
       <div>
         <label>Author</label>
         <div>
@@ -13,6 +13,7 @@ const CommentForm = props => {
             component="input"
             type="text"
             placeholder="Your Name"
+            className="comment-form-author"
           />
         </div>
       </div>
@@ -22,11 +23,13 @@ const CommentForm = props => {
           <Field name="body"
             component="textarea"
             type="text"
-          placeholder="Your comment"/>
+            placeholder="Your comment"
+            className="comment-form-body"
+          />
         </div>
       </div>
       <div>
-        <button type="submit" >Submit</button>
+        <button type="submit" className="comment-form-button" >Submit</button>
       </div>
     </form>
   );
