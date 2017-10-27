@@ -5,7 +5,7 @@ import PostForm from './PostForm'
 import CommentList from './CommentList'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { loadPostComments, editPost } from '../actions'
+import { loadPostComments, editPost, destroyPost } from '../actions'
 import { reset } from 'redux-form'
 import Modal from 'react-modal'
 
@@ -39,6 +39,8 @@ class Post extends Component {
     this.closeEditPostModal()
   }
 
+  deletePost =(postId) => this.props.destroyPost(postId)
+
   render() {
     const { post, comments } = this.props
     const postComments = comments[post.id] || []
@@ -66,6 +68,7 @@ class Post extends Component {
               postId={post.id} />
           </div>
           <button onClick={this.openEditPostModal} className="add-button">Edit Post</button>
+          <button onClick={this.deletePost.bind(this, post.id)} className="add-button">Delete Post</button>
         </article>
       </div>
     )
@@ -82,7 +85,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     loadComments: (postId) => dispatch(loadPostComments(postId)),
     updatePost: (post) => dispatch(editPost(post)),
-    resetPostForm:() => dispatch(reset('postForm'))
+    resetPostForm: () => dispatch(reset('postForm')),
+    destroyPost:  (postId) => dispatch(destroyPost(postId))
   }
 }
 

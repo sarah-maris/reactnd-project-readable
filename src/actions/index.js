@@ -268,16 +268,51 @@ export const sendCommentVote = (commentId, vote) => {
   }
 }
 
-export function deletePost(postId) {
+const deletePost = (postId) => {
+  console.log("destory")
   return {
     type: DELETE_POST,
     postId
   }
 }
 
-export function deleteComment(commentId) {
+export const destroyPost = (postId) => {
+
+  return dispatch => {
+    fetch(`${api}posts/${postId}`, {
+      method: 'DELETE',
+      headers: headers
+    })
+  .then(res => {
+    if (!res.ok) {
+      throw res
+    } else  return res.json()
+  })
+  .then( () => dispatch(deletePost(postId)))
+  .catch( error => showError(error));
+  }
+}
+
+const deleteComment = (commentId, parentId) => {
   return {
     type: DELETE_COMMENT,
-    commentId
+    commentId,
+    parentId
+  }
+}
+
+export const destroyComment = (commentId, parentId) => {
+  return dispatch => {
+    fetch(`${api}comments/${commentId}`, {
+      method: 'DELETE',
+      headers: headers
+  })
+  .then(res => {
+    if (!res.ok) {
+      throw res
+    } else  return res.json()
+  })
+  .then(json => dispatch(deleteComment(json, parentId)))
+  .catch( error => showError(error));
   }
 }
