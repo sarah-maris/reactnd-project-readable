@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import CommentForm from './CommentForm'
 import { connect } from 'react-redux';
 import formatDate from "../utils/helpers.js"
-import { sendCommentVote, editComment } from '../actions'
+import { sendCommentVote, editComment, destroyComment } from '../actions'
 import { reset } from 'redux-form'
 import Modal from 'react-modal'
 
@@ -12,14 +12,14 @@ class Comment extends Component {
     comment: PropTypes.object.isRequired
   }
 
-    state = {
-      commentModalOpen: false
-    }
+  state = {
+    commentModalOpen: false
+  }
 
-    openEditCommentModal = () => this.setState(() => ({ commentModalOpen: true }))
-    closeEditCommentModal = () => this.setState(() => ({ commentModalOpen: false }))
+  openEditCommentModal = () => this.setState(() => ({ commentModalOpen: true }))
+  closeEditCommentModal = () => this.setState(() => ({ commentModalOpen: false }))
 
-    editComment = (comment) => {
+  editComment = (comment) => {
     const updatedComment = {
         id: comment.id,
         timestamp: Date.now(),
@@ -31,6 +31,8 @@ class Comment extends Component {
       this.props.resetCommentForm()
       this.closeEditCommentModal()
     }
+
+  deleteComment =(comment) => this.props.destroyComment(comment)
 
   vote  = (commentId, vote) =>  {
     this.props.sendVote(commentId, vote)
@@ -72,6 +74,7 @@ class Comment extends Component {
             <p className="comment-author">{comment.author}</p>
             <p className="comment-time">{formatDate(comment.timestamp)}</p>
             <button onClick={this.openEditCommentModal} className="add-button">Edit Comment</button>
+            <button onClick={this.deleteComment.bind(this, comment)} className="add-button">Delete Comment</button>
           </div>
         </div>
       </div>
@@ -87,10 +90,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     sendVote: (commentId, vote) => dispatch(sendCommentVote(commentId, vote)),
     updateComment: (comment) => dispatch(editComment(comment)),
-    resetCommentForm:() => dispatch(reset('commentForm'))
+    resetCommentForm:() => dispatch(reset('commentForm')),
+    destroyComment:  (comment) => dispatch(destroyComment(comment))
   }
 }
-
 
 export default connect(
   mapStateToProps,

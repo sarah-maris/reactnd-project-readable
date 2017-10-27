@@ -286,7 +286,7 @@ export const destroyPost = (postId) => {
   .then(res => {
     if (!res.ok) {
       throw res
-    } else  return res.json()
+    } else return
   })
   .then( () => dispatch(deletePost(postId)))
   .catch( error => showError(error));
@@ -301,18 +301,18 @@ const deleteComment = (commentId, parentId) => {
   }
 }
 
-export const destroyComment = (commentId, parentId) => {
+export const destroyComment = (comment) => {
   return dispatch => {
-    fetch(`${api}comments/${commentId}`, {
+    fetch(`${api}comments/${comment.id}`, {
       method: 'DELETE',
       headers: headers
   })
   .then(res => {
     if (!res.ok) {
       throw res
-    } else  return res.json()
+    } else  return
   })
-  .then(json => dispatch(deleteComment(json, parentId)))
+  .then(() => dispatch(deleteComment(comment.id, comment.parentId)))
   .catch( error => showError(error));
   }
 }
