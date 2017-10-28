@@ -9,7 +9,8 @@ import {
   GET_CATEGORIES,
   GET_POST_COMMENTS,
   UPDATE_POST,
-  UPDATE_COMMENT
+  UPDATE_COMMENT,
+  INCREMENT_COMMENTS
 } from '../actions'
 
 function posts(state = [], action) {
@@ -30,6 +31,11 @@ function posts(state = [], action) {
     case UPDATE_POST:
       return state.map((post) => post.id === action.post.id
         ? action.post
+        : post)
+
+    case INCREMENT_COMMENTS:
+      return state.map((post) => post.id === action.postId
+        ?  {...post, commentCount: post.commentCount + 1}
         : post)
 
     default:

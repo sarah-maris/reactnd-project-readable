@@ -11,6 +11,7 @@ export const UPDATE_POST = 'UPDATE_POST'
 export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 export const DELETE_POST = 'DELETE_POST'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
+export const INCREMENT_COMMENTS = 'INCREMENT_COMMENTS'
 
 // API params
 const api = "http://localhost:5001/"
@@ -106,7 +107,7 @@ export function getCommentDetails(commentId) {
 }
 
 // requests to add data
-function addPost(post) {
+const addPost = (post) => {
   return {
     type: ADD_POST,
     post
@@ -137,12 +138,20 @@ export const sendPost = (post) => {
   }
 }
 
-export function addComment(comment) {
+const addComment =(comment) =>{
   return {
     type: ADD_COMMENT,
     comment
   }
 }
+
+const incrementComment =(postId) =>{
+  return {
+    type: INCREMENT_COMMENTS,
+    postId
+  }
+}
+
 export const sendComment = (comment) => {
   return dispatch => {
   fetch(`${api}comments`, {
@@ -162,6 +171,7 @@ export const sendComment = (comment) => {
     } else  return res.json()
   })
   .then(json => dispatch(addComment(json)))
+  .then(() => dispatch(incrementComment(comment.parentId)))
   .catch( error => showError(error));
   }
 }
