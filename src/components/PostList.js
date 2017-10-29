@@ -38,6 +38,17 @@ class PostList extends Component {
   render() {
     const { posts } = this.props
     const { postModalOpen } = this.state
+    const sortedByTime = [...posts].sort((a, b) => (b.timestamp-a.timestamp))
+    const sortedByVotes= [...posts].sort((a, b) => (b.voteScore-a.voteScore))
+    const sortedByTitle = [...posts].sort((a, b) => {
+      const aTitle=a.title.toLowerCase(), bTitle=b.title.toLowerCase()
+      if (aTitle < bTitle)
+          return -1
+      if (aTitle > bTitle)
+          return 1
+      return 0
+    })
+
 
     return (
     <div>
@@ -52,10 +63,11 @@ class PostList extends Component {
       </Modal>
       <button onClick={this.openAddPostModal} className="add-button">Add New Post</button>
       <section className="posts-list">
-        {posts.map((post) => (
-          <Post
-            post={post}
-            key={post.id}
+        {
+          sortedByTitle.map((post) => (
+            <Post
+              post={post}
+              key={post.id}
           />
         ))}
       </section>

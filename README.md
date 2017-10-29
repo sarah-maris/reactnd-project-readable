@@ -37,6 +37,7 @@ A new browser window should automatically open displaying the app.  If it doesn'
 * [Glyph Icons](http://glyph.smarticons.co/)
 * [Redux Form](https://redux-form.com/7.1.1/)
 * [CSS Tricks: Considerations for Styling a Modal](https://css-tricks.com/considerations-styling-modal/)
+* [Sitepoint: How to Sort an Array of Objects in JavaScript](https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/)
 
 ### Udacity Resources:
 * [Project server starter template](https://github.com/udacity/reactnd-project-readable-starter)
