@@ -12,6 +12,8 @@ export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 export const DELETE_POST = 'DELETE_POST'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const INCREMENT_COMMENTS = 'INCREMENT_COMMENTS'
+export const DECREMENT_COMMENTS = 'DECREMENT_COMMENTS'
+
 
 // API params
 const api = "http://localhost:5001/"
@@ -145,7 +147,7 @@ const addComment =(comment) =>{
   }
 }
 
-const incrementComment =(postId) =>{
+const incrementComments =(postId) =>{
   return {
     type: INCREMENT_COMMENTS,
     postId
@@ -171,7 +173,7 @@ export const sendComment = (comment) => {
     } else  return res.json()
   })
   .then(json => dispatch(addComment(json)))
-  .then(() => dispatch(incrementComment(comment.parentId)))
+  .then(() => dispatch(incrementComments(comment.parentId)))
   .catch( error => showError(error));
   }
 }
@@ -258,7 +260,6 @@ export const sendPostVote = (postId, vote) => {
   }
 }
 
-
 export const sendCommentVote = (commentId, vote) => {
   return dispatch => {
    fetch(`${ api}comments/${commentId}`, {
@@ -311,6 +312,13 @@ const deleteComment = (commentId, parentId) => {
   }
 }
 
+const decrementComments =(postId) =>{
+  return {
+    type: DECREMENT_COMMENTS,
+    postId
+  }
+}
+
 export const destroyComment = (comment) => {
   return dispatch => {
     fetch(`${api}comments/${comment.id}`, {
@@ -323,6 +331,7 @@ export const destroyComment = (comment) => {
     } else  return
   })
   .then(() => dispatch(deleteComment(comment.id, comment.parentId)))
+  .then(() => dispatch(decrementComments(comment.parentId)))
   .catch( error => showError(error));
   }
 }

@@ -17,6 +17,7 @@ class PostMain extends Component {
           <h3 className="post-title">{post.title}</h3>
           <div className="post-meta">
             <div className="author">{post.author}</div>
+            <div className="num-comments">{post.commentCount}</div>
             <div className="timestamp">{formatDate(post.timestamp)}</div>
           </div>
         </div>

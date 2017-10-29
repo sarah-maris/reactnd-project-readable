@@ -10,7 +10,8 @@ import {
   GET_POST_COMMENTS,
   UPDATE_POST,
   UPDATE_COMMENT,
-  INCREMENT_COMMENTS
+  INCREMENT_COMMENTS,
+  DECREMENT_COMMENTS
 } from '../actions'
 
 function posts(state = [], action) {
@@ -31,6 +32,11 @@ function posts(state = [], action) {
     case UPDATE_POST:
       return state.map((post) => post.id === action.post.id
         ? action.post
+        : post)
+
+    case DECREMENT_COMMENTS:
+      return state.map((post) => post.id === action.postId
+        ?  {...post, commentCount: post.commentCount - 1}
         : post)
 
     case INCREMENT_COMMENTS:
