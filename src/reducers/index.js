@@ -4,6 +4,7 @@ import {
   ADD_POST,
   ADD_COMMENT,
   DELETE_POST,
+  DELETE_POST_COMMENTS,
   DELETE_COMMENT,
   GET_ALL_POSTS,
   GET_CATEGORIES,
@@ -86,6 +87,11 @@ function comments(state = {}, action) {
           ? action.comment
           : comment)
       }
+
+    case DELETE_POST_COMMENTS:
+      const newState = Object.assign( {}, state)
+      delete newState[action.postId]
+      return newState
 
     default:
       return state

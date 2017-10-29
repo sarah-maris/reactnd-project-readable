@@ -10,6 +10,7 @@ export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const UPDATE_POST = 'UPDATE_POST'
 export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 export const DELETE_POST = 'DELETE_POST'
+export const DELETE_POST_COMMENTS = 'DELETE_POST_COMMENTS'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const INCREMENT_COMMENTS = 'INCREMENT_COMMENTS'
 export const DECREMENT_COMMENTS = 'DECREMENT_COMMENTS'
@@ -280,9 +281,15 @@ export const sendCommentVote = (commentId, vote) => {
 }
 
 const deletePost = (postId) => {
-  console.log("destory")
   return {
     type: DELETE_POST,
+    postId
+  }
+}
+
+const deletePostComments = (postId) => {
+  return {
+    type: DELETE_POST_COMMENTS,
     postId
   }
 }
@@ -299,7 +306,8 @@ export const destroyPost = (postId) => {
       throw res
     } else return
   })
-  .then( () => dispatch(deletePost(postId)))
+  .then(() => dispatch(deletePost(postId)))
+  .then(() => dispatch(deletePostComments(postId)))
   .catch( error => showError(error));
   }
 }
