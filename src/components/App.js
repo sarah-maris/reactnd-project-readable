@@ -2,19 +2,8 @@ import React, { Component } from 'react'
 import PostList from './PostList'
 import logo from '../images/logo.png'
 import CatList from './CatList'
-import { connect } from 'react-redux'
-import { loadPosts, loadCategories,  sendPost, sendComment } from '../actions'
-
 
 class App extends Component {
-
-  state = {
-    posts: []
-  }
-
-  componentDidMount() {
-    this.props.loadAllPosts();
-  }
 
   render() {
 
@@ -39,7 +28,7 @@ class App extends Component {
             <CatList />
           </nav>
           <section className="posts-display">
-            <PostList posts={ posts } />
+            <PostList />
           </section>
         </main>
       </div>
@@ -47,19 +36,5 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    posts: state.posts
-  }
-}
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadAllPosts: () => dispatch(loadPosts())
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App)
+export default App

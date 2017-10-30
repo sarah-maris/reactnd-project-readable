@@ -1,22 +1,24 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import Post from './Post'
-import PostForm from './PostForm'
-import { sendPost } from '../actions'
+import AddPostForm from './AddPostForm'
+import { loadPosts, sendPost } from '../actions'
 import { reset } from 'redux-form';
 import Modal from 'react-modal'
 
 class PostList extends Component {
-  static propTypes = {
-    posts: PropTypes.array.isRequired,
-  }
 
   state = {
+    posts: [],
     postModalOpen: false
   }
 
+  componentDidMount() {
+    this.props.loadAllPosts();
+  }
+
   openAddPostModal = () => this.setState(() => ({ postModalOpen: true }))
+
   closeAddPostModal = () => this.setState(() => ({ postModalOpen: false }))
 
   addPost = (post) => {
@@ -86,7 +88,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addNewPost: (post) => dispatch(sendPost(post)),
-    resetPostForm:() => dispatch(reset('addPostForm'))
+    resetPostForm:() => dispatch(reset('addPostForm')),
+    loadAllPosts: () => dispatch(loadPosts())
   }
 }
 
