@@ -117,7 +117,7 @@ function categories(state = [], action) {
 }
 
 function listState (state = { category: 'all', sortType: 'Vote' } , action) {
-console.log(action)
+
   switch (action.type) {
     case SET_CATEGORY:
       return { ...state, category:action.category }

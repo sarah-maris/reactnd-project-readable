@@ -41,13 +41,20 @@ class PostList extends Component {
   render() {
     const { posts, listState } = this.props
     const { postModalOpen } = this.state
+
+    // filter posts by chosen category
     const catPosts =  posts.filter((post) => listState.category === post.category || listState.category === 'all' )
+
+    // sort posts based on user input
     const sortPosts = () => {
       switch (listState.sortType) {
-        case "Votes" :
+        case "votesUp" :
             return catPosts.sort((a, b) => (b.voteScore-a.voteScore))
 
-       case "Title" :
+        case "votesDown" :
+            return catPosts.sort((a, b) => (a.voteScore-b.voteScore))
+
+       case "titleUp" :
         catPosts.sort((a, b) => {
           const aTitle=a.title.toLowerCase(), bTitle=b.title.toLowerCase()
           if (aTitle < bTitle)
@@ -55,23 +62,25 @@ class PostList extends Component {
           if (aTitle > bTitle)
               return 1
           return 0
-        }) 
+        })
+        return catPosts
+
+        case "titleDown" :
+         catPosts.sort((a, b) => {
+           const aTitle=a.title.toLowerCase(), bTitle=b.title.toLowerCase()
+           if (aTitle < bTitle)
+               return 1
+           if (aTitle > bTitle)
+               return -1
+           return 0
+         })
+         return catPosts
 
         default :
           return catPosts
 
       }
     }
-    const sortedByTime = [...posts].sort((a, b) => (b.timestamp-a.timestamp))
-    const sortedByVotes= [...posts].sort((a, b) => (b.voteScore-a.voteScore))
-    const sortedByTitle = [...posts].sort((a, b) => {
-      const aTitle=a.title.toLowerCase(), bTitle=b.title.toLowerCase()
-      if (aTitle < bTitle)
-          return -1
-      if (aTitle > bTitle)
-          return 1
-      return 0
-    })
 
     return (
     <div>

@@ -19,7 +19,7 @@ class PostSort extends Component {
   render() {
 
     const { categories, currentCategory } = this.props
-    const sortTypes = ['Title', 'Votes']
+    const sortTypes = ['title', 'votes']
   //  const titleSorts, 'titleAToZ', 'titleZtoA']
 
     return (
@@ -37,15 +37,17 @@ class PostSort extends Component {
             </li>
           ))}
         </ul>
-        <ul className="sort-list">
+        <h3 className="order-title">Order by</h3>
+        <div className="sort-list">
           {sortTypes.map((sortType, index) => (
-            <li className="cat-button"
-              key={index}
-              onClick={this.setSort.bind(this, sortType)}>
-              {sortType}
-            </li>
+            <div className="sort-items"
+              key={index} >
+              <div className="sort up" onClick={this.setSort.bind(this, `${sortType}Up`)}>+</div>
+              <div className="sort-text">{sortType}</div>
+              <div className="sort down" onClick={this.setSort.bind(this, `${sortType}Down`)}>-</div>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     )
   }

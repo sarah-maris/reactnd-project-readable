@@ -96,6 +96,41 @@ button:hover {
   background: #1e7981;
 }
 
+.order-title {
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+.sort-items {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+  justify-content: space-around;
+  line-height: 40px;
+  margin: 10px;
+}
+
+.sort {
+  background-position: center;
+  background-repeat: no-repeat;
+  font-size: 0;
+  height: 20px;
+  padding: 5px;
+  width: 20px;
+}
+
+.sort-text {
+  background-color: #808080;
+  border-radius: 10px;
+  color: #fff;
+  width: 175px;
+}
+
+.sort.up {
+  margin-top: 5px;
+}
+
 /* posts */
 
 .posts-list {
@@ -350,7 +385,6 @@ button:hover {
   }
   .cat-button {
     max-width: 300px;
-    text-align: left;
   }
   .author, .timestamp {
     flex-basis: 50%;
