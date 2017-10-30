@@ -10,11 +10,12 @@ class PostList extends Component {
 
   state = {
     posts: [],
+    category: '',
     postModalOpen: false
   }
 
   componentDidMount() {
-    this.props.loadAllPosts();
+    this.props.loadAllPosts()
   }
 
   openAddPostModal = () => this.setState(() => ({ postModalOpen: true }))
@@ -38,8 +39,9 @@ class PostList extends Component {
   }
 
   render() {
-    const { posts } = this.props
+    const { posts, category } = this.props
     const { postModalOpen } = this.state
+    const catPosts =  posts.filter((post) => category === post.category || category === 'all' )
     const sortedByTime = [...posts].sort((a, b) => (b.timestamp-a.timestamp))
     const sortedByVotes= [...posts].sort((a, b) => (b.voteScore-a.voteScore))
     const sortedByTitle = [...posts].sort((a, b) => {
@@ -65,7 +67,7 @@ class PostList extends Component {
       <button onClick={this.openAddPostModal} className="add-button">Add New Post</button>
       <section className="posts-list">
         {
-          sortedByTitle.map((post) => (
+          catPosts.map((post) => (
             <Post
               post={post}
               key={post.id}
@@ -80,7 +82,8 @@ class PostList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    posts: state.posts
+    posts: state.posts,
+    category: state.category
   }
 }
 

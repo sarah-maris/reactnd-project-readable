@@ -115,7 +115,7 @@ function categories(state = [], action) {
   }
 }
 
-function category (state = "", action) {
+function category (state = 'all', action) {
 
   switch (action.type) {
     case SET_CATEGORY:
