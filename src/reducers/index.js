@@ -9,6 +9,7 @@ import {
   GET_ALL_POSTS,
   GET_CATEGORIES,
   SET_CATEGORY,
+  SET_SORT,
   GET_POST_COMMENTS,
   UPDATE_POST,
   UPDATE_COMMENT,
@@ -115,11 +116,14 @@ function categories(state = [], action) {
   }
 }
 
-function category (state = 'all', action) {
-
+function listState (state = { category: 'all', sortType: 'Vote' } , action) {
+console.log(action)
   switch (action.type) {
     case SET_CATEGORY:
-      return action.category
+      return { ...state, category:action.category }
+
+    case SET_SORT:
+      return  { ...state, sortType:action.sortType }
 
     default:
       return state
@@ -129,5 +133,5 @@ function category (state = 'all', action) {
 export default combineReducers({posts,
   comments,
   categories,
-  category,
+  listState,
   form})

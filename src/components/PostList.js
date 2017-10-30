@@ -10,7 +10,7 @@ class PostList extends Component {
 
   state = {
     posts: [],
-    category: '',
+    listState: {},
     postModalOpen: false
   }
 
@@ -39,9 +39,29 @@ class PostList extends Component {
   }
 
   render() {
-    const { posts, category } = this.props
+    const { posts, listState } = this.props
     const { postModalOpen } = this.state
-    const catPosts =  posts.filter((post) => category === post.category || category === 'all' )
+    const catPosts =  posts.filter((post) => listState.category === post.category || listState.category === 'all' )
+    const sortPosts = () => {
+      switch (listState.sortType) {
+        case "Votes" :
+            return catPosts.sort((a, b) => (b.voteScore-a.voteScore))
+
+       case "Title" :
+        catPosts.sort((a, b) => {
+          const aTitle=a.title.toLowerCase(), bTitle=b.title.toLowerCase()
+          if (aTitle < bTitle)
+              return -1
+          if (aTitle > bTitle)
+              return 1
+          return 0
+        }) 
+
+        default :
+          return catPosts
+
+      }
+    }
     const sortedByTime = [...posts].sort((a, b) => (b.timestamp-a.timestamp))
     const sortedByVotes= [...posts].sort((a, b) => (b.voteScore-a.voteScore))
     const sortedByTitle = [...posts].sort((a, b) => {
@@ -67,7 +87,7 @@ class PostList extends Component {
       <button onClick={this.openAddPostModal} className="add-button">Add New Post</button>
       <section className="posts-list">
         {
-          catPosts.map((post) => (
+          sortPosts().map((post) => (
             <Post
               post={post}
               key={post.id}
@@ -83,7 +103,7 @@ class PostList extends Component {
 const mapStateToProps = (state) => {
   return {
     posts: state.posts,
-    category: state.category
+    listState: state.listState
   }
 }
 

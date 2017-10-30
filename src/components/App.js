@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PostList from './PostList'
 import logo from '../images/logo.png'
-import CatList from './CatList'
+import PostSort from './PostSort'
 
 class App extends Component {
 
@@ -25,7 +25,7 @@ class App extends Component {
         <hr className="blue line"/>
         <main>
           <nav className="sidebar">
-            <CatList />
+            <PostSort />
           </nav>
           <section className="posts-display">
             <PostList />

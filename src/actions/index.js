@@ -1,5 +1,6 @@
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const SET_CATEGORY = 'SET_CATEGORY'
+export const SET_SORT = 'SET_SORT'
 export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS'
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'
 export const GET_POST_DETAILS = 'GET_POST_DETAILS'
@@ -75,6 +76,12 @@ export const setCategory = (category) => {
   }
 }
 
+export const setSort = (sortType) => {
+  return {
+    type: SET_SORT,
+    sortType
+  }
+}
 // load post comments
 const getPostComments = (postId, comments)  => {
   return {
