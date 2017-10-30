@@ -1,4 +1,5 @@
 export const GET_CATEGORIES = 'GET_CATEGORIES'
+export const SET_CATEGORY = 'SET_CATEGORY'
 export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS'
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'
 export const GET_POST_DETAILS = 'GET_POST_DETAILS'
@@ -63,6 +64,13 @@ export const loadCategories = () => {
       })
     .then(json => dispatch(getCategories(json)))
     .catch( error => showError(error));
+  }
+}
+
+export const setCategory = (category) => {
+  return {
+    type: SET_CATEGORY,
+    category
   }
 }
 

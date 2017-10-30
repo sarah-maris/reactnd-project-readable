@@ -9,19 +9,16 @@ import { loadPosts, loadCategories,  sendPost, sendComment } from '../actions'
 class App extends Component {
 
   state = {
-    posts: [],
-    commments: {},
-    categories: []
+    posts: []
   }
 
   componentDidMount() {
     this.props.loadAllPosts();
-    this.props.loadCats();
   }
 
   render() {
 
-    const {  posts, categories } = this.props
+    const { posts } = this.props
 
     return (
       <div className="App">
@@ -39,10 +36,10 @@ class App extends Component {
         <hr className="blue line"/>
         <main>
           <nav className="sidebar">
-            <CatList cats={ categories} />
+            <CatList />
           </nav>
           <section className="posts-display">
-            <PostList posts={posts} />
+            <PostList posts={ posts } />
           </section>
         </main>
       </div>
@@ -52,18 +49,13 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    posts: state.posts,
-    comments: state.comments,
-    categories: state.categories
+    posts: state.posts
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addNewPost: (post) => dispatch(sendPost(post)),
-    addNewComment: (comment) => dispatch(sendComment(comment)),
-    loadAllPosts: () => dispatch(loadPosts()),
-    loadCats: () => dispatch(loadCategories())
+    loadAllPosts: () => dispatch(loadPosts())
   }
 }
 

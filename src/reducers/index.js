@@ -8,6 +8,7 @@ import {
   DELETE_COMMENT,
   GET_ALL_POSTS,
   GET_CATEGORIES,
+  SET_CATEGORY,
   GET_POST_COMMENTS,
   UPDATE_POST,
   UPDATE_COMMENT,
@@ -109,4 +110,19 @@ function categories(state = [], action) {
   }
 }
 
-export default combineReducers({posts, comments, categories, form})
+function category (state = "", action) {
+
+  switch (action.type) {
+    case SET_CATEGORY:
+      return action.category
+
+    default:
+      return state
+  }
+}
+
+export default combineReducers({posts,
+  comments,
+  categories,
+  category,
+  form})
