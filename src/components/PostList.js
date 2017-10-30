@@ -59,7 +59,7 @@ class PostList extends Component {
         onRequestClose={this.closeAddPostModal}
         contentLabel='Modal'
       >
-        {postModalOpen && <PostForm onSubmit={this.addPost} />}
+        {postModalOpen && <AddPostForm onSubmit={this.addPost} />}
       </Modal>
       <button onClick={this.openAddPostModal} className="add-button">Add New Post</button>
       <section className="posts-list">

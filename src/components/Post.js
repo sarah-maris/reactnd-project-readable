@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PostSidebar from './PostSidebar'
 import PostMain from './PostMain'
-import PostForm from './PostForm'
+import EditPostForm from './EditPostForm'
 import CommentList from './CommentList'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -23,6 +23,7 @@ class Post extends Component {
   }
 
   openEditPostModal = () => this.setState(() => ({ postModalOpen: true }))
+
   closeEditPostModal = () => this.setState(() => ({ postModalOpen: false }))
 
   editPost = (post) => {
@@ -32,8 +33,10 @@ class Post extends Component {
       title: post.title,
       body: post.body,
       author: post.author,
-      category: post.category
+      category: post.category,
+      commentCount: post.commentCount
     }
+
     this.props.updatePost(updatedPost)
     this.props.resetPostForm()
     this.closeEditPostModal()
@@ -55,7 +58,7 @@ class Post extends Component {
           onRequestClose={this.closeAddPostModal}
           contentLabel='Modal'
         >
-          {postModalOpen && <PostForm
+          {postModalOpen && <EditPostForm
             initialValues={post}
             onSubmit={this.editPost} />}
         </Modal>

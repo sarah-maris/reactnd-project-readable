@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 
-class PostForm extends Component {
+class EditPostForm extends Component {
 
   render() {
 
@@ -10,18 +10,6 @@ class PostForm extends Component {
 
     return (
       <form onSubmit={handleSubmit} className="post-form">
-        <div>
-          <label>Author</label>
-          <div>
-            <Field
-              name="author"
-              component="input"
-              type="text"
-              placeholder="Your Name"
-              className="post-form-author"
-            />
-          </div>
-        </div>
         <div>
           <label>I want to talk about</label>
           <div>
@@ -32,24 +20,6 @@ class PostForm extends Component {
               placeholder="Post title"
               className="post-form-title"
             />
-          </div>
-        </div>
-        <div>
-          <label>Category</label>
-          <div>
-            <Field
-              name="category"
-              component="select"
-              className="post-form-category"
-            >
-              <option/>
-              {categories.map((category, index) => (
-                <option
-                  value={category.name}
-                  key={index}>{category.name}
-                </option>
-              ))}
-            </Field>
           </div>
         </div>
         <div>
@@ -77,10 +47,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-PostForm = connect(
+EditPostForm = connect(
   mapStateToProps
-)(PostForm)
+)(EditPostForm)
 
 export default reduxForm({
   form: 'postForm'
-})(PostForm)
+})(EditPostForm)

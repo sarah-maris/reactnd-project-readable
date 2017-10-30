@@ -10,6 +10,7 @@ export const ADD_COMMENT = 'ADD_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const UPDATE_POST = 'UPDATE_POST'
 export const UPDATE_COMMENT = 'UPDATE_COMMENT'
+export const VOTE_POST = 'VOTE_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const DELETE_POST_COMMENTS = 'DELETE_POST_COMMENTS'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
@@ -136,7 +137,8 @@ export const sendPost = (post) => {
       title: post.title,
       body: post.body,
       author: post.author,
-      category: post.category
+      category: post.category,
+      commentCount: post.commentCount
      }),
   })
   .then(res => {
@@ -187,34 +189,33 @@ export const sendComment = (comment) => {
   }
 }
 
-// used for editing and voting
-const updatePost = (post) => {
+// used for editing posts
+const updatePost = (body, title, postId) => {
   return {
     type: UPDATE_POST,
-    post
+    body, title, postId
   }
 }
 
 export const editPost = (post) => {
+  let postId = post.id
   return dispatch => {
-  fetch(`${api}posts`, {
-    method: 'POST',
+  fetch(`${api}posts/${post.id}`, {
+    method: 'PUT',
     headers: headers,
     body: JSON.stringify({
-      id: post.id,
-      timestamp: post.timestamp,
       title: post.title,
-      body: post.body,
-      author: post.author,
-      category: post.category
+      body: post.body
      }),
   })
   .then(res => {
     if (!res.ok) {
       throw res
-    } else  return res.json()
+    } else {
+      return res.json()
+    }
   })
-  .then(json => dispatch(updatePost(json)))
+  .then(post => dispatch(updatePost(post.body, post.title, postId)))
   .catch( error => showError(error));
   }
 }
@@ -250,6 +251,13 @@ export const editComment = (comment) => {
 }
 
 // voting
+const votePost = (post) => {
+  return {
+    type: VOTE_POST,
+    post
+  }
+}
+
 export const sendPostVote = (postId, vote) => {
   return dispatch => {
    fetch(`${ api}posts/${postId}`, {
@@ -264,7 +272,7 @@ export const sendPostVote = (postId, vote) => {
         throw res
       } else  return res.json()
     })
-    .then(post => dispatch(updatePost(post)))
+    .then(post => dispatch(votePost(post)))
     .catch( error => showError(error));
   }
 }
