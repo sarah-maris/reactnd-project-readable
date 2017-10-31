@@ -6,7 +6,6 @@
 This game was built as the "Readables"  project for the Udacity React Nanodegree Program. The purpose of the project is to demonstrate understanding of how Redux works in a React-based content and comment web app. Users can post content to predefined categories, comment on their posts and other users' posts, edit and delete posts and comments and vote on posts and comments.
 
 ## How to Load the App
-You can run a hosted version of the app at ***TO BE ADDED***
 
 The project uses Node.js and the Create-React-App starter.  If you do not have Node >= 6.x installed, you can download it here: [Node.js](https://nodejs.org/en/)
 

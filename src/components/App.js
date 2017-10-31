@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
 import PostList from './PostList'
 import logo from '../images/logo.png'
 import Sidebar from './Sidebar'
+import SinglePost from './SinglePost'
 
 class App extends Component {
 
@@ -23,14 +25,18 @@ class App extends Component {
         <hr className="teal line"/>
         <hr className="gray line"/>
         <hr className="blue line"/>
-        <main>
-          <nav className="sidebar">
-            <Sidebar />
-          </nav>
-          <section className="posts-display">
-            <PostList />
-          </section>
-        </main>
+        <Route exact path='/' render={() => (
+          <main>
+            <div className="sidebar">
+              <Sidebar />
+            </div>
+            <section className="posts-display">
+              <PostList />
+            </section>
+          </main>
+        )}/>
+        <Route  path='/post/:postId' render={(props) => <SinglePost {...props} />} />
+        )} />
       </div>
     );
   }

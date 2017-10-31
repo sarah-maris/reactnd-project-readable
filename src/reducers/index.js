@@ -11,6 +11,7 @@ import {
   SET_CATEGORY,
   SET_SORT,
   GET_POST_COMMENTS,
+  GET_POST_DETAILS,
   UPDATE_POST,
   UPDATE_COMMENT,
   VOTE_POST,
@@ -33,6 +34,9 @@ function posts(state = [], action) {
 
     case GET_ALL_POSTS:
       return action.posts
+
+    case GET_POST_DETAILS:
+        return [action.post]
 
     case UPDATE_POST:
       return state.map((post) => post.id === action.postId

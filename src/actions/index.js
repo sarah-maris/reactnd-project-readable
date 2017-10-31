@@ -112,10 +112,23 @@ export function getCategoryPosts(category) {
   }
 }
 
-export function getPostDetails(postId) {
+// load post details
+const getPostDetails = (post) => {
   return {
-    type: GET_CATEGORY_POSTS,
-    postId
+    type: GET_POST_DETAILS,
+    post
+  }
+}
+export const getPost = (postId) => {
+  return dispatch => {
+    fetch(`${api}posts/${postId}`, {headers})
+      .then(res => {
+        if (!res.ok) {
+          throw res
+        } else  return res.json()
+      })
+    .then(post => dispatch(getPostDetails(post)))
+    .catch( error => showError(error));
   }
 }
 
