@@ -28,7 +28,6 @@ class PostSidebar extends Component {
           onClick={() => this.vote(postId, "downVote")}>
           down vote
         </div>
-        <div className="comments-icon icon">+</div>
       </div>
     </div>
   )

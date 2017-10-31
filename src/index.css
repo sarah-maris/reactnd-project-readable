@@ -184,6 +184,7 @@ button:hover {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
+  max-width: 200px;
   padding: 0 0 10px 0;
 }
 
@@ -232,6 +233,22 @@ button:hover {
 
 .up {
   background-image: url('./images/up.svg');
+}
+
+.edit-white {
+    background-image: url('./images/edit-white.svg');
+}
+
+.delete-white {
+    background-image: url('./images/delete-white.svg');
+}
+
+.edit {
+    background-image: url('./images/edit.svg');
+}
+
+.delete {
+    background-image: url('./images/delete.svg');
 }
 
 .votes {
