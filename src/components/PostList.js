@@ -29,6 +29,12 @@ class PostList extends Component {
         case "votesDown" :
             return catPosts.sort((a, b) => (a.voteScore-b.voteScore))
 
+        case "recentUp" :
+            return catPosts.sort((a, b) => (b.timestamp-a.timestamp))
+
+        case "recentDown" :
+            return catPosts.sort((a, b) => (a.timestamp-b.timestamp))
+
        case "titleUp" :
         catPosts.sort((a, b) => {
           const aTitle=a.title.toLowerCase(), bTitle=b.title.toLowerCase()

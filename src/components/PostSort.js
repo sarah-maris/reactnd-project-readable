@@ -20,7 +20,7 @@ class PostSort extends Component {
   render() {
 
     const { categories, currentCategory } = this.props
-    const sortTypes = ['title', 'votes']
+    const sortTypes = ['recent', 'votes', 'title' ]
 
     return (
       <div>
