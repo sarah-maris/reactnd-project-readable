@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import CommentForm from './CommentForm'
+import EditCommentForm from './EditCommentForm'
 import { connect } from 'react-redux';
 import formatDate from "../utils/helpers.js"
 import { sendCommentVote, editComment, destroyComment } from '../actions'
@@ -53,7 +53,8 @@ class Comment extends Component {
           onRequestClose={this.closeEditCommentModal}
           contentLabel='Modal'
         >
-          {commentModalOpen && <CommentForm
+          <div className="close-click" onClick={this.closeEditCommentModal}>X</div>
+          {commentModalOpen && <EditCommentForm
             initialValues={comment}
             onSubmit={this.editComment} />}
         </Modal>

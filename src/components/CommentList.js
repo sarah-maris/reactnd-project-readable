@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Comment from './Comment'
-import CommentForm from './CommentForm'
+import AddCommentForm from './AddCommentForm'
 import { reset } from 'redux-form'
 import { connect } from 'react-redux'
 import { sendComment } from '../actions'
@@ -49,7 +49,8 @@ class CommentList extends Component {
           onRequestClose={this.closeAddCommentModal}
           contentLabel='Modal'
         >
-          {commentModalOpen && <CommentForm onSubmit={this.submitComment} />}
+          <div className="close-click" onClick={this.closeAddCommentModal}>X</div>
+          {commentModalOpen && <AddCommentForm onSubmit={this.submitComment} />}
         </Modal>
         <div className="comments-list" id={postId}>
           {postComments.map((comment) => (
