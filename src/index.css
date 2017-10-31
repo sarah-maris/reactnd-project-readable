@@ -368,6 +368,10 @@ button {
   transition-duration: 0.4s;
 }
 
+.post-link {
+  text-decoration: none;
+}
+
 .post-form-button {
   background: #808080;
 }

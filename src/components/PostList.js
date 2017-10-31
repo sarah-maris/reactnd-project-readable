@@ -70,7 +70,7 @@ class PostList extends Component {
             <PostSummary
               post={post}
               key={post.id}
-          />
+            />
         ))}
       </section>
     )
