@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loadCategories, setCategory, setSort } from '../actions'
+import AddPost from './AddPost'
 
 class PostSort extends Component {
 
@@ -20,23 +21,24 @@ class PostSort extends Component {
 
     const { categories, currentCategory } = this.props
     const sortTypes = ['title', 'votes']
-  //  const titleSorts, 'titleAToZ', 'titleZtoA']
 
     return (
       <div>
-        <ul className="cat-list">
-          <li className={ currentCategory === 'all' ? "cat-button selected-cat" : "cat-button"}
-            onClick={this.setCat.bind(this, 'all')}>
-            All posts
-          </li>
-          {categories.map((cat, index) => (
-            <li className={ currentCategory === cat.name ? "cat-button selected-cat" : "cat-button"}
-              key={index}
-              onClick={this.setCat.bind(this, cat.name)}>
-              {cat.name}
+        <div>
+          <ul className="cat-list">
+            <li className={ currentCategory === 'all' ? "cat-button selected-cat" : "cat-button"}
+              onClick={this.setCat.bind(this, 'all')}>
+              All posts
             </li>
-          ))}
-        </ul>
+            {categories.map((cat, index) => (
+              <li className={ currentCategory === cat.name ? "cat-button selected-cat" : "cat-button"}
+                key={index}
+                onClick={this.setCat.bind(this, cat.name)}>
+                {cat.name}
+              </li>
+            ))}
+          </ul>
+        </div>
         <h3 className="order-title">Order by</h3>
         <div className="sort-list">
           {sortTypes.map((sortType, index) => (
