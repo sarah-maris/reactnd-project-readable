@@ -58,6 +58,7 @@ class Post extends Component {
           onRequestClose={this.closeAddPostModal}
           contentLabel='Modal'
         >
+          <div className="close-click" onClick={this.closeEditPostModal}>X</div>
           {postModalOpen && <EditPostForm
             initialValues={post}
             onSubmit={this.editPost} />}

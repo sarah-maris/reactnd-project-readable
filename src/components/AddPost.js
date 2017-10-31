@@ -42,6 +42,7 @@ class AddPost extends Component {
         onRequestClose={this.closeAddPostModal}
         contentLabel='Modal'
       >
+        <div className="close-click" onClick={this.closeAddPostModal}>X</div>
         {postModalOpen && <AddPostForm onSubmit={this.addPost} />}
       </Modal>
       <button onClick={this.openAddPostModal} className="add-post-button">Add New Post</button>
