@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
+import PostHeader from './PostHeader'
 import formatDate from "../utils/helpers.js"
 
 class PostMain extends Component {
@@ -12,15 +13,7 @@ class PostMain extends Component {
 
     return (
       <div>
-        <div className="post-header">
-          <div className="category">{post.category}</div>
-          <h3 className="post-title">{post.title}</h3>
-          <div className="post-meta">
-            <div className="author">{post.author}</div>
-            <div className="comments-icon-white icon">{post.commentCount}</div>
-          <div className="timestamp">{formatDate(post.timestamp)}</div>
-        </div>
-      </div>
+        <PostHeader post={post} />
         <div className="post-body">{post.body}</div>
       </div>
     )
