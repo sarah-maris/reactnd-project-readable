@@ -12,6 +12,7 @@ export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const UPDATE_POST = 'UPDATE_POST'
 export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 export const VOTE_POST = 'VOTE_POST'
+export const VOTE_COMMENT = "VOTE_COMMENT"
 export const DELETE_POST = 'DELETE_POST'
 export const DELETE_POST_COMMENTS = 'DELETE_POST_COMMENTS'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
@@ -205,13 +206,14 @@ const updatePost = (body, title, postId) => {
 }
 
 export const editPost = (post) => {
-  let postId = post.id
+  const postId = post.id
   return dispatch => {
   fetch(`${api}posts/${post.id}`, {
     method: 'PUT',
     headers: headers,
     body: JSON.stringify({
       title: post.title,
+      timestamp: post.timestamp,
       body: post.body
      }),
   })
@@ -227,24 +229,25 @@ export const editPost = (post) => {
   }
 }
 
-const updateComment = (comment) => {
+const updateComment = (comment, commentId, parentId) => {
   return {
     type: UPDATE_COMMENT,
-    comment
+    comment,
+    commentId,
+    parentId
   }
 }
 
 export const editComment = (comment) => {
+  const parentId = comment.parentId
+  const commentId = comment.id
   return dispatch => {
-  fetch(`${api}comments`, {
-    method: 'POST',
+  fetch(`${api}comments/${commentId}`, {
+    method: 'PUT',
     headers: headers,
     body: JSON.stringify({
-      id: comment.id,
-      timestamp: comment.timestamp,
       body: comment.body,
-      author: comment.author,
-      parentId: comment.parentId
+      timestamp: comment.timestamp,
      }),
   })
   .then(res => {
@@ -252,7 +255,7 @@ export const editComment = (comment) => {
       throw res
     } else  return res.json()
   })
-  .then(json => dispatch(updateComment(json)))
+  .then(comment => dispatch(updateComment(comment, commentId, parentId )))
   .catch( error => showError(error));
   }
 }
@@ -284,9 +287,16 @@ export const sendPostVote = (postId, vote) => {
   }
 }
 
-export const sendCommentVote = (commentId, vote) => {
+const voteComment = (comment) => {
+  return {
+    type: VOTE_COMMENT,
+    comment
+  }
+}
+
+export const sendCommentVote = (comment, vote) => {
   return dispatch => {
-   fetch(`${ api}comments/${commentId}`, {
+   fetch(`${ api}comments/${comment.id}`, {
         method: 'POST',
         headers: headers,
         body: JSON.stringify({
@@ -298,7 +308,7 @@ export const sendCommentVote = (commentId, vote) => {
         throw res
       } else  return res.json()
     })
-    .then(comment => dispatch(updateComment(comment)))
+    .then(comment => dispatch(voteComment(comment)))
     .catch( error => showError(error));
   }
 }

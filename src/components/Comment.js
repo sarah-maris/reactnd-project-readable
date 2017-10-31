@@ -34,8 +34,8 @@ class Comment extends Component {
 
   deleteComment =(comment) => this.props.destroyComment(comment)
 
-  vote  = (commentId, vote) =>  {
-    this.props.sendVote(commentId, vote)
+  vote  = (comment, vote) =>  {
+    this.props.sendVote(comment, vote)
   }
 
 
@@ -60,12 +60,12 @@ class Comment extends Component {
         <div className="comment" key={comment.id}>
           <div className="voting">
             <div className="up icon"
-              onClick={() => vote(comment.id, "upVote")}>
+              onClick={() => vote(comment, "upVote")}>
               up vote
             </div>
             <div className="votes icon">{comment.voteScore}</div>
             <div className="down icon"
-              onClick={() =>vote(comment.id, "downVote")}>
+              onClick={() =>vote(comment, "downVote")}>
               down vote
             </div>
           </div>
@@ -88,7 +88,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    sendVote: (commentId, vote) => dispatch(sendCommentVote(commentId, vote)),
+    sendVote: (comment, vote) => dispatch(sendCommentVote(comment, vote)),
     updateComment: (comment) => dispatch(editComment(comment)),
     resetCommentForm:() => dispatch(reset('commentForm')),
     destroyComment:  (comment) => dispatch(destroyComment(comment))

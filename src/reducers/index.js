@@ -14,6 +14,7 @@ import {
   UPDATE_POST,
   UPDATE_COMMENT,
   VOTE_POST,
+  VOTE_COMMENT,
   INCREMENT_COMMENTS,
   DECREMENT_COMMENTS
 } from '../actions'
@@ -62,8 +63,8 @@ function comments(state = {}, action) {
   switch (action.type) {
 
     case ADD_COMMENT:
-      const comment = action.comment;
-      const parentId = comment.parentId;
+      const comment = action.comment
+      const parentId = comment.parentId
       return {
         ...state,
         [parentId]: [
@@ -79,19 +80,21 @@ function comments(state = {}, action) {
       }
 
     case GET_POST_COMMENTS:
-      const postId = action.postId;
+      const postId = action.postId
       return {
         ...state,
         [postId]: action.comments
       }
 
     case UPDATE_COMMENT:
-      const commentId = action.comment.id
-      const prnId = action.comment.parentId;
+      const commentId = action.commentId
+      const prnId = action.parentId
       return {
         ...state,
-        [prnId]: state[prnId].map((comment) => comment.id === commentId
-          ? action.comment
+        [action.parentId]: state[action.parentId].map((comment) => comment.id === commentId
+          ? {...comment,
+            body:action.comment.body,
+            timestamp: action.comment.timestamp}
           : comment)
       }
 
@@ -99,6 +102,14 @@ function comments(state = {}, action) {
       const newState = Object.assign( {}, state)
       delete newState[action.postId]
       return newState
+
+    case VOTE_COMMENT:
+      return {
+        ...state,
+        [action.comment.parentId]: state[action.comment.parentId].map((comment) => comment.id === action.comment.id
+          ? action.comment
+          : comment)
+      }
 
     default:
       return state
