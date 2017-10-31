@@ -182,7 +182,9 @@ button:hover {
 
 .post-meta {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 0 0 10px 0;
 }
 
 .author, .category {
@@ -194,7 +196,8 @@ button:hover {
   margin: 0 0 10px 0;
 }
 
-.post-title, .post-body, .author, .timestamp {
+.post-title,
+.post-body {
   flex-basis: 100%;
 }
 
@@ -246,13 +249,22 @@ button:hover {
   margin-right: 10px;
 }
 
-.comments-icon {
+.comments-icon,
+.comments-icon-white {
   background-image: url('./images/solid-bubble-message.svg');
   font-size: 18px;
   height: 40px;
   line-height: 35px;
-  padding: 40px 0;
   text-align: center;
+}
+
+.comments-icon {
+  background-image: url('./images/solid-bubble-message.svg');
+  padding: 40px 0;
+}
+.comments-icon-white {
+    background-image: url('./images/solid-bubble-message-white.svg');
+    color: #808080;
 }
 
 .comments-list {
