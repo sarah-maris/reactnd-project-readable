@@ -3,6 +3,7 @@ import PostSidebar from './PostSidebar'
 import PostHeader from './PostHeader'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import formatDate from '../utils/helpers.js'
 
 class PostSummary extends Component {
   static propTypes = {
@@ -14,14 +15,24 @@ class PostSummary extends Component {
     const link = `post/${post.id}`
 
     return (
-      <Link to={link} className="post-link">
+
         <article className="post">
           <PostSidebar post={post} />
           <div className="post-main">
-            <PostHeader post={post} />
+            <div className="post-header">
+              <Link to={link} className="post-link post-data">
+                <div className="category">{post.category}</div>
+                <h3 className="post-title">{post.title}</h3>
+                <div className="post-meta">
+                  <div className="author">{post.author}</div>
+                  <div className="comments-icon-white icon">{post.commentCount}</div>
+                  <div className="timestamp">{formatDate(post.timestamp)}</div>
+                </div>
+              </Link>
+            </div>
           </div>
         </article>
-      </Link>
+
     )
   }
 }

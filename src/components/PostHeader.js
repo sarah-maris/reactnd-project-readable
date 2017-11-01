@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import formatDate from "../utils/helpers.js"
+import formatDate from '../utils/helpers.js'
 import EditPostForm from './EditPostForm'
 import { connect } from 'react-redux'
 import {  editPost, destroyPost } from '../actions'
@@ -56,17 +56,18 @@ class PostHeader extends Component {
             onSubmit={this.editPost} />}
         </Modal>
         <div className="post-header">
-          <div className="post-meta">
+          <div className="post-data">
             <div className="category">{post.category}</div>
-            <div className="edit-white  icon" onClick={this.openEditPostModal}></div>
-            <div className="delete-white icon"
-              onClick={this.deletePost.bind(this, post.id)}></div>
+            <h3 className="post-title">{post.title}</h3>
+            <div className="post-meta">
+              <div className="author">{post.author}</div>
+              <div className="comments-icon-white icon">{post.commentCount}</div>
+              <div className="timestamp">{formatDate(post.timestamp)}</div>
+            </div>
           </div>
-          <h3 className="post-title">{post.title}</h3>
-          <div className="post-meta">
-            <div className="author">{post.author}</div>
-            <div className="comments-icon-white icon">{post.commentCount}</div>
-            <div className="timestamp">{formatDate(post.timestamp)}</div>
+          <div className="post-changes">
+            <div className="delete-white icon" onClick={this.deletePost.bind(this, post.id)}></div>
+            <div className="edit-white icon" onClick={this.openEditPostModal}></div>
           </div>
         </div>
       </div>
