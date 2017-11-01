@@ -40,6 +40,8 @@ class CommentList extends Component {
     const { postComments, postId } = this.props
     const { commentModalOpen } = this.state
 
+    const sortComments = postComments.sort((a, b) => (b.voteScore-a.voteScore))
+
     return (
       <div>
         <Modal
@@ -53,7 +55,7 @@ class CommentList extends Component {
           {commentModalOpen && <AddCommentForm onSubmit={this.submitComment} />}
         </Modal>
         <div className="comments-list" id={postId}>
-          {postComments.map((comment) => (
+          {sortComments.map((comment) => (
             <Comment
               comment={comment}
               key={comment.id}
