@@ -8,6 +8,7 @@ import {
   DELETE_COMMENT,
   GET_ALL_POSTS,
   GET_CATEGORIES,
+  GET_CATEGORY_POSTS,
   SET_CATEGORY,
   SET_SORT,
   GET_POST_COMMENTS,
@@ -37,6 +38,9 @@ function posts(state = [], action) {
 
     case GET_POST_DETAILS:
         return [action.post]
+
+    case GET_CATEGORY_POSTS:
+       return action.posts
 
     case UPDATE_POST:
       return state.map((post) => post.id === action.postId

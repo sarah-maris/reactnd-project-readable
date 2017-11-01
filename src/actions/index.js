@@ -37,7 +37,7 @@ const getAllPosts = (posts) => {
   }
 }
 
-export const loadPosts = () => {
+export const loadAllPosts = () => {
   return dispatch => {
     fetch(`${ api }posts`, {headers})
       .then(res => {
@@ -45,7 +45,7 @@ export const loadPosts = () => {
           throw res
         } else  return res.json()
       })
-      .then(json => dispatch(getAllPosts(json)))
+      .then(posts => dispatch(getAllPosts(posts)))
       .catch( error => showError(error));
   }
 }
@@ -65,7 +65,7 @@ export const loadCategories = () => {
           throw res
         } else  return res.json()
       })
-    .then(json => dispatch(getCategories(json)))
+    .then(categories => dispatch(getCategories(categories)))
     .catch( error => showError(error));
   }
 }
@@ -100,18 +100,31 @@ export const loadPostComments = (postId) => {
           throw res
         } else  return res.json()
       })
-      .then(json => dispatch(getPostComments(postId, json)))
+      .then(comments => dispatch(getPostComments(postId, comments)))
       .catch( error => showError(error));
   }
 }
 
-export function getCategoryPosts(category) {
+const getCategoryPosts = (posts) => {
+  console.log(posts)
   return {
     type: GET_CATEGORY_POSTS,
-    category
+    posts
   }
 }
 
+export const loadCategoryPosts = (category) => {
+  return dispatch => {
+    fetch(`${ api }${ category}/posts`, {headers})
+      .then(res => {
+        if (!res.ok) {
+          throw res
+        } else  return res.json()
+      })
+      .then(posts => dispatch(getCategoryPosts(posts)))
+      .catch( error => showError(error));
+  }
+}
 // load post details
 const getPostDetails = (post) => {
   return {
@@ -131,14 +144,14 @@ export const getPost = (postId) => {
     .catch( error => showError(error));
   }
 }
-
+/*************************************** NOT USED
 export function getCommentDetails(commentId) {
   return {
     type: GET_COMMENT_DETAILS,
     commentId
   }
 }
-
+*/
 // requests to add data
 const addPost = (post) => {
   return {
@@ -167,7 +180,7 @@ export const sendPost = (post) => {
       throw res
     } else  return res.json()
   })
-  .then(json => dispatch(addPost(json)))
+  .then(post => dispatch(addPost(post)))
   .catch( error => showError(error));
   }
 }
@@ -204,7 +217,7 @@ export const sendComment = (comment) => {
       throw res
     } else  return res.json()
   })
-  .then(json => dispatch(addComment(json)))
+  .then(comment => dispatch(addComment(comment)))
   .then(() => dispatch(incrementComments(comment.parentId)))
   .catch( error => showError(error));
   }
