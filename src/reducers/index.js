@@ -84,18 +84,15 @@ function comments(state = {}, action) {
       }
 
     case GET_POST_COMMENTS:
-      const postId = action.postId
       return {
         ...state,
-        [postId]: action.comments
+        [action.postId]: action.comments
       }
 
     case UPDATE_COMMENT:
-      const commentId = action.commentId
-      const prnId = action.parentId
       return {
         ...state,
-        [action.parentId]: state[action.parentId].map((comment) => comment.id === commentId
+        [action.parentId]: state[action.parentId].map((comment) => comment.id === action.commentId
           ? {...comment,
             body:action.comment.body,
             timestamp: action.comment.timestamp}

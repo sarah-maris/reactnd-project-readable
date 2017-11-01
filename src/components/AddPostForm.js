@@ -42,24 +42,24 @@ const renderInputField = ({
     </div>
   </div>
 
-  const renderSelectField = ({
-    input,
-    label,
-    type,
-    className,
-    meta: { touched, error },
-    children
-  }) =>
+const renderSelectField = ({
+  input,
+  label,
+  type,
+  className,
+  meta: { touched, error },
+  children
+}) =>
+<div>
+  <label>{ label }</label>
   <div>
-    <label>{ label }</label>
-    <div>
-      <select className={ className } { ...input }>
-        {children}
-      </select>
-      { touched && error &&
-        <div className="error">{`*${error} is required!`} </div> }
-    </div>
+    <select className={ className } { ...input }>
+      {children}
+    </select>
+    { touched && error &&
+      <div className="error">{`*${error} is required!`} </div> }
   </div>
+</div>
 
   const renderTextareaField = ({
     input,
@@ -118,7 +118,6 @@ class AddPostForm extends Component {
         </Field>
         <Field
           name="body"
-          component="textarea"
           type="text"
           placeholder="Your comment"
           className="post-form-body"

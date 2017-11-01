@@ -64,7 +64,6 @@ const AddCommentForm = props => {
       />
       <Field
         name="body"
-        component="textarea"
         type="text"
         placeholder="Your comment"
         className="comment-form-body"

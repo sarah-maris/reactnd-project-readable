@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loadCategories, setCategory, setSort } from '../actions'
-import AddPost from './AddPost'
 
 class PostSort extends Component {
 

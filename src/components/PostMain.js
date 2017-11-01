@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import PostHeader from './PostHeader'
-import formatDate from "../utils/helpers.js"
 
 class PostMain extends Component {
   static propTypes = {

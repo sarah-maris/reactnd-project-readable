@@ -9,8 +9,6 @@ class App extends Component {
 
   render() {
 
-    const { posts } = this.props
-
     return (
       <div className="App">
         <header>
@@ -36,7 +34,6 @@ class App extends Component {
           </main>
         )}/>
         <Route  path='/post/:postId' render={(props) => <SinglePost {...props} />} />
-        )} />
       </div>
     );
   }

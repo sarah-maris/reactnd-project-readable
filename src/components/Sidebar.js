@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { loadCategories, setCategory, setSort } from '../actions'
 import AddPost from './AddPost'
 import PostSort from './PostSort'
 

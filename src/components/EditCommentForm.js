@@ -35,7 +35,6 @@ const EditCommentForm = props => {
     <form onSubmit={handleSubmit} className="comment-form">
       <Field
         name="body"
-        component="textarea"
         type="text"
         placeholder="Your comment"
         className="comment-form-body"

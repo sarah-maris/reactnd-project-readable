@@ -55,7 +55,7 @@ class EditPostForm extends Component {
 
   render() {
 
-    const { handleSubmit, categories } = this.props
+    const { handleSubmit } = this.props
 
     return (
       <form onSubmit={handleSubmit} className="post-form">
@@ -69,7 +69,6 @@ class EditPostForm extends Component {
         />
         <Field
           name="body"
-          component="textarea"
           type="text"
           placeholder="Your comment"
           className="post-form-body"
