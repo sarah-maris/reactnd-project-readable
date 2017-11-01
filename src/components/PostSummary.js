@@ -11,7 +11,7 @@ class PostSummary extends Component {
 
   render() {
     const {post} = this.props
-    const link = `post/${post.id}`
+    const link = `${post.category}/${post.id}`
 
     return (
 

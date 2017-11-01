@@ -33,7 +33,7 @@ class App extends Component {
             </section>
           </main>
         )}/>
-        <Route  path='/post/:postId' render={(props) => <SinglePost {...props} />} />
+        <Route  path='/:category/:postId' render={(props) => <SinglePost {...props} />} />
       </div>
     );
   }
