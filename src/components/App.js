@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import PostList from './PostList'
 import logo from '../images/logo.png'
 import Sidebar from './Sidebar'
@@ -23,27 +23,29 @@ class App extends Component {
         <hr className="teal line"/>
         <hr className="gray line"/>
         <hr className="blue line"/>
-        <Route exact path='/' render={(props) => (
-          <main>
-            <div className="sidebar">
-              <Sidebar />
-            </div>
-            <section className="posts-display">
-              <PostList category={'all'}/>
-            </section>
-          </main>
-        )}/>
-        <Route exact path='/:category/:postId' render={(props) => <SinglePost {...props} />} />
-        <Route  exact path='/:category' render={(props) => (
-          <main>
-            <div className="sidebar">
-              <Sidebar />
-            </div>
-            <section className="posts-display">
-              <PostList {...props}/>
-            </section>
-          </main>
-        )}/>
+        <Switch>
+          <Route exact path='/' render={(props) => (
+            <main>
+              <div className="sidebar">
+                <Sidebar />
+              </div>
+              <section className="posts-display">
+                <PostList category={'all'}/>
+              </section>
+            </main>
+          )}/>
+          <Route path='/:category/:postId' render={(props) => <SinglePost {...props} />} />
+          <Route  path='/:category' render={(props) => (
+            <main>
+              <div className="sidebar">
+                <Sidebar />
+              </div>
+              <section className="posts-display">
+                <PostList {...props}/>
+              </section>
+            </main>
+          )}/>
+        </Switch>
       </div>
     );
   }
