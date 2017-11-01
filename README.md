@@ -9,22 +9,34 @@ This game was built as the "Readables"  project for the Udacity React Nanodegree
 
 The project uses Node.js and the Create-React-App starter.  If you do not have Node >= 6.x installed, you can download it here: [Node.js](https://nodejs.org/en/)
 
-Once Node is installed, navigate to the directory where you want to store the app
+Once Node is installed, navigate to the directory where you want to store the app and run
 ```
 git clone https://github.com/sarah-maris/reactnd-project-readable.git
 npm install
 ```
-Once all of the dependencies have been installed you can launch the app with
+
+Next, install the server.  Navigate to the `server` directory of the project and run
+```
+npm install
+```
+When the dependencies are installed you can run the server by entering:
+```
+node server
+```
+The server will listen on port 5001
+
+Next, open a new shell window in the root directory of the project and run
 ```
 npm start
 ```
 
 A new browser window should automatically open displaying the app.  If it doesn't, navigate to [http://localhost:3000/](http://localhost:3000/) in your browser
 
-***ADD LOAD IMAGE and DIRECTIONS FOR STARTING SERVER***
-
 ## How to Use the App
 
+The app loads showing all posts, sorted by vote score.  You can change the post sorting and show each category's posts separately.  You can also add a new post.
+
+Clicking on a post will take to you the single post page, which shows the post body and details about the post.  On the single post page you can edit or delete the post and add, delete or edit comments.
 
 ### Resources and Documentation:
 * [Create-react-app Documentation](https://github.com/facebookincubator/create-react-app)
