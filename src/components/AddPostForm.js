@@ -109,7 +109,8 @@ class AddPostForm extends Component {
           className="post-form-category"
           label="Category"
         >
-          {categories.map((category, index) => (
+          {categories.filter((category) =>
+          category.name !== "all") .map((category, index) => (
             <option
               value={category.name}
               key={index}>{category.name}
@@ -126,7 +127,7 @@ class AddPostForm extends Component {
         />
         <button type="submit" className="post-form-button">Submit</button>
       </form>
-      )
+    )
   }
 }
 

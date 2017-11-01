@@ -7,7 +7,8 @@ class PostSort extends Component {
 
   state = {
     categories: [],
-    currentCategory: ""
+    // show all posts by default
+    currentCategory: "all posts"
   }
 
   componentDidMount() {
@@ -21,23 +22,18 @@ class PostSort extends Component {
 
     const { categories, currentCategory } = this.props
     const sortTypes = ['recent', 'votes', 'title' ]
-    const allCats = [...categories, {name: 'all', path:'all'}]
-
 
     return (
       <div>
         <div>
           <ul className="cat-list">
-            <li className={ currentCategory === 'all' ? "cat-button selected-cat" : "cat-button"} >
-              <Link to='all' className="post-link post-data">
-                All posts
-              </Link>
-            </li>
             {categories.map((cat, index) => (
-              <li className={ currentCategory === cat.name ? "cat-button selected-cat" : "cat-button"}
-                key={index}>
+              <li
+                className={ currentCategory === cat.name ? "cat-button selected-cat" : "cat-button"}
+                key={index}
+                onClick={this.setCat.bind(this, cat.name)}>
                 <Link to={cat.path} className="post-link post-data">
-                  {cat.name}
+                  {cat.name} posts
                 </Link>
               </li>
             ))}

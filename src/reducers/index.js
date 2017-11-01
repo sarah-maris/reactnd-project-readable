@@ -125,7 +125,8 @@ function categories(state = [], action) {
 
   switch (action.type) {
     case GET_CATEGORIES:
-      return action.categories.categories
+
+      return [{name: 'all', path:'all'}].concat(action.categories.categories)
 
     default:
       return state
