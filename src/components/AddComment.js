@@ -34,7 +34,6 @@ class AddComment extends Component {
   }
 
   render() {
-    const { postId } = this.props
     const { commentModalOpen } = this.state
 
     return (

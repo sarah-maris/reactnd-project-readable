@@ -1,43 +1,47 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PostSummary from './PostSummary'
-import { loadPosts } from '../actions'
+import { loadAllPosts, loadCategoryPosts } from '../actions'
 import AddPost from './AddPost'
+import { withRouter } from 'react-router-dom'
 
 class PostList extends Component {
 
   state = {
     posts: [],
+    category: this.props.match.params.category,
     listState: {}
   }
 
   componentDidMount() {
-    this.props.loadAllPosts()
+  console.log(this.state.category,"STATE")
+    this.state.category === 'all' ?
+      this.props.getAllPosts() :
+      this.props.getCatPosts(this.state.category)
   }
 
   render() {
-    const { posts, listState } = this.props
-
-    // filter posts by chosen category
-    const catPosts =  posts.filter((post) => listState.category === post.category || listState.category === 'all' )
+  //  this.props.match.params.postId
+    const { listState, posts } = this.props
+    //const posts = posts || []
 
     // sort posts based on user input
     const sortPosts = () => {
       switch (listState.sortType) {
         case "votesUp" :
-            return catPosts.sort((a, b) => (b.voteScore-a.voteScore))
+            return posts.sort((a, b) => (b.voteScore-a.voteScore))
 
         case "votesDown" :
-            return catPosts.sort((a, b) => (a.voteScore-b.voteScore))
+            return posts.sort((a, b) => (a.voteScore-b.voteScore))
 
         case "recentUp" :
-            return catPosts.sort((a, b) => (b.timestamp-a.timestamp))
+            return posts.sort((a, b) => (b.timestamp-a.timestamp))
 
         case "recentDown" :
-            return catPosts.sort((a, b) => (a.timestamp-b.timestamp))
+            return posts.sort((a, b) => (a.timestamp-b.timestamp))
 
        case "titleUp" :
-        catPosts.sort((a, b) => {
+        posts.sort((a, b) => {
           const aTitle=a.title.toLowerCase(), bTitle=b.title.toLowerCase()
           if (aTitle < bTitle)
               return -1
@@ -45,10 +49,10 @@ class PostList extends Component {
               return 1
           return 0
         })
-        return catPosts
+        return posts
 
         case "titleDown" :
-         catPosts.sort((a, b) => {
+         posts.sort((a, b) => {
            const aTitle=a.title.toLowerCase(), bTitle=b.title.toLowerCase()
            if (aTitle < bTitle)
                return 1
@@ -56,10 +60,10 @@ class PostList extends Component {
                return -1
            return 0
          })
-         return catPosts
+         return posts
 
         default :
-          return catPosts
+          return posts
 
       }
     }
@@ -88,11 +92,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadAllPosts: () => dispatch(loadPosts())
+    getAllPosts: () => dispatch(loadAllPosts()),
+    getCatPosts: (category) => dispatch(loadCategoryPosts(category))
   }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(PostList)
+)(PostList))

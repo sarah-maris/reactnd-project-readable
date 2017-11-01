@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loadCategories, setCategory, setSort } from '../actions'
+import { Link } from 'react-router-dom'
 
 class PostSort extends Component {
 
@@ -20,20 +21,24 @@ class PostSort extends Component {
 
     const { categories, currentCategory } = this.props
     const sortTypes = ['recent', 'votes', 'title' ]
+    const allCats = [...categories, {name: 'all', path:'all'}]
+
 
     return (
       <div>
         <div>
           <ul className="cat-list">
-            <li className={ currentCategory === 'all' ? "cat-button selected-cat" : "cat-button"}
-              onClick={this.setCat.bind(this, 'all')}>
-              All posts
+            <li className={ currentCategory === 'all' ? "cat-button selected-cat" : "cat-button"} >
+              <Link to='all' className="post-link post-data">
+                All posts
+              </Link>
             </li>
             {categories.map((cat, index) => (
               <li className={ currentCategory === cat.name ? "cat-button selected-cat" : "cat-button"}
-                key={index}
-                onClick={this.setCat.bind(this, cat.name)}>
-                {cat.name}
+                key={index}>
+                <Link to={cat.path} className="post-link post-data">
+                  {cat.name}
+                </Link>
               </li>
             ))}
           </ul>

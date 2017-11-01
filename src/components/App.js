@@ -23,17 +23,27 @@ class App extends Component {
         <hr className="teal line"/>
         <hr className="gray line"/>
         <hr className="blue line"/>
-        <Route exact path='/' render={() => (
+        <Route exact path='/' render={(props) => (
           <main>
             <div className="sidebar">
               <Sidebar />
             </div>
             <section className="posts-display">
-              <PostList />
+              <PostList category={'all'}/>
             </section>
           </main>
         )}/>
-        <Route  path='/:category/:postId' render={(props) => <SinglePost {...props} />} />
+        <Route exact path='/:category/:postId' render={(props) => <SinglePost {...props} />} />
+        <Route  exact path='/:category' render={(props) => (
+          <main>
+            <div className="sidebar">
+              <Sidebar />
+            </div>
+            <section className="posts-display">
+              <PostList {...props}/>
+            </section>
+          </main>
+        )}/>
       </div>
     );
   }
