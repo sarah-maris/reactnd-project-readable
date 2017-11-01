@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PostSummary from './PostSummary'
-import { loadAllPosts, loadCategoryPosts } from '../actions'
+import { loadPosts } from '../actions'
 import AddPost from './AddPost'
 import { withRouter } from 'react-router-dom'
 
@@ -9,21 +9,29 @@ class PostList extends Component {
 
   state = {
     posts: [],
-    category: this.props.match.params.category,
+    // set default categoy to "all"
+    category: this.props.match.url.slice(1) || 'all',
     listState: {}
   }
 
   componentDidMount() {
-  console.log(this.state.category,"STATE")
-    this.state.category === 'all' ?
-      this.props.getAllPosts() :
-      this.props.getCatPosts(this.state.category)
+    console.log(this.props)
+    this.props.getPosts(this.state.category)
+  }
+
+
+  componentWillReceiveProps({location}) {
+
+    const path = this.props.location.pathname
+    if(location.pathname !== path) {
+        this.setState({category: location.pathname.slice(1) })
+        this.props.getPosts(location.pathname.slice(1))
+    }
   }
 
   render() {
-  //  this.props.match.params.postId
+
     const { listState, posts } = this.props
-    //const posts = posts || []
 
     // sort posts based on user input
     const sortPosts = () => {
@@ -92,8 +100,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllPosts: () => dispatch(loadAllPosts()),
-    getCatPosts: (category) => dispatch(loadCategoryPosts(category))
+    getPosts: (category) => dispatch(loadPosts(category))
   }
 }
 
