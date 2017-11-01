@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PostSidebar from './PostSidebar'
-import PostHeader from './PostHeader'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import formatDate from '../utils/helpers.js'

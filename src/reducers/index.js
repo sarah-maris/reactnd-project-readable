@@ -128,7 +128,7 @@ function categories(state = [], action) {
   }
 }
 
-function listState (state = { category: 'all', sortType: 'Vote' } , action) {
+function listState (state = { category: 'all', sortType: 'votesUp' } , action) {
 
   switch (action.type) {
     case SET_CATEGORY:
