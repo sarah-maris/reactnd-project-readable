@@ -212,7 +212,8 @@ button:hover {
 .post-link {
   color: #fff;
   text-decoration: none;
-  width: 100%
+  width: 100%;
+  display: block;
 }
 
 .post-header {
@@ -237,6 +238,7 @@ button:hover {
 .post-changes {
   margin: 10px 0 15px;
 }
+
 .post-meta,
 .comment-meta {
   display: flex;
@@ -271,6 +273,10 @@ button:hover {
 .post-body {
   color: #808080;
   padding: 20px;
+}
+
+.post-data {
+  width: 100%;
 }
 
 /* post sidebar */
