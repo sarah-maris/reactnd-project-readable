@@ -106,14 +106,25 @@ export const loadPostComments = (postId) => {
 }
 
 const getCategoryPosts = (posts) => {
-  console.log(posts)
   return {
     type: GET_CATEGORY_POSTS,
     posts
   }
 }
 
-export const loadCategoryPosts = (category) => {
+export const loadPosts = (category) => {
+  if (category === 'all') {
+    return dispatch => {
+      fetch(`${ api }posts`, {headers})
+        .then(res => {
+          if (!res.ok) {
+            throw res
+          } else  return res.json()
+        })
+        .then(posts => dispatch(getAllPosts(posts)))
+        .catch( error => showError(error));
+    }
+  } else {
   return dispatch => {
     fetch(`${ api }${ category}/posts`, {headers})
       .then(res => {
@@ -124,7 +135,7 @@ export const loadCategoryPosts = (category) => {
       .then(posts => dispatch(getCategoryPosts(posts)))
       .catch( error => showError(error));
   }
-}
+}}
 // load post details
 const getPostDetails = (post) => {
   return {
