@@ -167,17 +167,26 @@ button:hover {
   flex-grow: 1;
 }
 
-.post-current {
-  border: 3px solid #1e4d81;
+.post-link {
+  color: #fff;
+  text-decoration: none;
+  width: 100%;
 }
 
 .post-header {
   background: #808080;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content:space-between;
   padding: 10px 20px 0 20px;
 }
 
-.post-current .post-header {
-  background: #1e4d81;
+.post-changes {
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  margin: 10px 0 15px;
 }
 
 .post-meta {
@@ -188,7 +197,8 @@ button:hover {
   padding: 0 0 10px 0;
 }
 
-.author, .category {
+.author,
+.category {
   font-style: italic;
 }
 
@@ -368,9 +378,6 @@ button {
   transition-duration: 0.4s;
 }
 
-.post-link {
-  text-decoration: none;
-}
 
 .post-form-button {
   background: #808080;
