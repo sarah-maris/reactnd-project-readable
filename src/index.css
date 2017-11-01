@@ -83,7 +83,16 @@ main {
   width: 100%;
 }
 
-.add-post-text {
+.join-in {
+  background: #1e7981;
+  color: #fff;
+  display: flex;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.add-post-text,
+.add-comment-text {
   font-size:  24px;
   font-weight: bold;
   line-height: 50px;
@@ -92,6 +101,11 @@ main {
 
 .add-post.icon {
   background-image: url('./images/chat-bubble-talk.svg');
+  height: 50px;
+}
+
+.add-comment.icon {
+  background-image: url('./images/chat-bubble-talk-white.svg');
   height: 50px;
 }
 
@@ -543,6 +557,6 @@ button:hover {
   }
 
   .comments-list {
-    margin-left: 50px;
+    margin-left: 60px;
   }
 }
