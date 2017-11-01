@@ -74,7 +74,27 @@ main {
   padding: 0;
 }
 
-.add-post-button,
+.start-new {
+  background: #fff;
+  border: 3px solid #1e4d81;
+  color: #1e4d81;
+  display: flex;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.add-post-text {
+  font-size:  24px;
+  font-weight: bold;
+  line-height: 50px;
+  margin-left: 20px;
+}
+
+.add-post {
+  background-image: url('./images/chat-bubble-talk.svg');
+  height: 50px;
+}
+
 .cat-button {
   background: #1e4d81;
   border: 0;
@@ -436,7 +456,7 @@ button:hover {
   .posts-display {
     flex-basis: 800px;
   }
-  .add-post-button,
+
   .cat-button {
     max-width: 300px;
   }

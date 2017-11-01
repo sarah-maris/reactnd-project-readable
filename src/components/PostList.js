@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PostSummary from './PostSummary'
 import { loadPosts } from '../actions'
+import AddPost from './AddPost'
 
 class PostList extends Component {
 
@@ -65,6 +66,7 @@ class PostList extends Component {
 
     return (
       <section className="posts-list">
+        <AddPost />
         {
           sortPosts().map((post) => (
             <PostSummary

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AddPost from './AddPost'
+
 import PostSort from './PostSort'
 
 class Sidebar extends Component {
@@ -10,7 +10,6 @@ class Sidebar extends Component {
 
         <div>
           <PostSort />
-          <AddPost />
         </div>
       )
     }
