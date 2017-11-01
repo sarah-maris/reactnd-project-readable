@@ -60,22 +60,28 @@ class Comment extends Component {
         </Modal>
         <div className="comment" key={comment.id}>
           <div className="voting">
-            <div className="up icon"
+            <div className="up-blue icon"
               onClick={() => vote(comment, "upVote")}>
               up vote
             </div>
-            <div className="votes icon">{comment.voteScore}</div>
-            <div className="down icon"
+            <div className="votes-blue icon">{comment.voteScore}</div>
+            <div className="down-blue icon"
               onClick={() =>vote(comment, "downVote")}>
               down vote
             </div>
           </div>
           <div className="comment-body">
-            <p>{comment.body}</p>
-            <p className="comment-author">{comment.author}</p>
-            <p className="comment-time">{formatDate(comment.timestamp)}</p>
-            <button onClick={this.openEditCommentModal} className="add-button">Edit Comment</button>
-            <button onClick={this.deleteComment.bind(this, comment)} className="add-button">Delete Comment</button>
+            <div className="comment-data">
+              <div>{comment.body}</div>
+              <div className="comment-meta">
+                <div className="comment-author">{ comment.author }</div>
+                <div className="comment-time">{ formatDate(comment.timestamp) }</div>
+              </div>
+            </div>
+            <div className="comment-changes">
+              <div onClick={this.deleteComment.bind(this, comment)} className="delete-blue icon">Delete Comment</div>
+              <div onClick={this.openEditCommentModal} className="edit-blue icon">Edit Comment</div>
+            </div>
           </div>
         </div>
       </div>

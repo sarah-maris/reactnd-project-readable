@@ -90,7 +90,7 @@ main {
   margin-left: 20px;
 }
 
-.add-post {
+.add-post.icon {
   background-image: url('./images/chat-bubble-talk.svg');
   height: 50px;
 }
@@ -174,6 +174,14 @@ button:hover {
   max-width: 1000px;
 }
 
+.single {
+  display:flex;
+  flex-direction:column;
+  max-width: 1000px;
+  margin: auto;
+  width:90%;
+}
+
 .post {
   color: #fff;
   display: flex;
@@ -195,25 +203,35 @@ button:hover {
 
 .post-header {
   background: #808080;
+}
+
+.post-header,
+.comment-body {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
   justify-content:space-between;
   padding: 10px 20px 0 20px;
 }
 
-.post-changes {
+.post-changes,
+.comment-changes {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content:space-between;
+}
+.post-changes {
   margin: 10px 0 15px;
 }
-
-.post-meta {
+.post-meta,
+.comment-meta {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   max-width: 200px;
+}
+
+.post-meta {
   padding: 0 0 10px 0;
 }
 
@@ -264,6 +282,13 @@ button:hover {
 .up {
   background-image: url('./images/up.svg');
 }
+.down-blue {
+  background-image: url('./images/down-blue.svg');
+}
+
+.up-blue {
+  background-image: url('./images/up-blue.svg');
+}
 
 .edit-white {
     background-image: url('./images/edit-white.svg');
@@ -273,16 +298,27 @@ button:hover {
     background-image: url('./images/delete-white.svg');
 }
 
-.edit {
+.edit-blue {
     background-image: url('./images/edit.svg');
 }
 
-.delete {
+.delete-blue {
     background-image: url('./images/delete.svg');
 }
 
 .votes {
   background-image: url('./images/heart.svg');
+  background-size: 50px;
+  color: #fff;
+  font-size: 18px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  width: 50px
+}
+
+.votes-blue {
+  background-image: url('./images/heart-blue.svg');
   background-size: 50px;
   color: #fff;
   font-size: 18px;
@@ -322,15 +358,25 @@ button:hover {
 
 .comment {
   display: flex;
+  color: #1e4d81;
 }
 
 .comment-body {
-  border-left: 2px dashed;
-  border-top: 2px dashed;
+  border:  3px solid #1e4d81;
+  border-radius: 10px;
+  margin: 0 0 5px;
   padding: 10px;
   width: 100%;
 }
 
+.comment-data {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.comment-author {
+  font-style: italic;
+}
 /* modal */
 
 .overlay {
@@ -460,11 +506,22 @@ button:hover {
   .cat-button {
     max-width: 300px;
   }
-  .author, .timestamp {
+  .author,
+  .timestamp {
     flex-basis: 50%;
   }
   .timestamp {
     text-align: right;
+  }
+
+  .post-changes,
+  .comment-changes {
+    flex-direction: column;
+  }
+
+  .post-header,
+  .comment-body {
+    flex-direction: row;
   }
 }
 
@@ -472,13 +529,20 @@ button:hover {
   .title-block {
     margin: 0.5em;
   }
+
   .app-title {
     font-size: 6em;
   }
+
   .app-subtitle {
     font-size: 2em;
   }
+
   .logo {
     max-width: 250px;
+  }
+
+  .comments-list {
+    margin-left: 50px;
   }
 }

@@ -25,15 +25,18 @@ class SinglePost extends Component {
     const postComments = comments[post.id] || []
 
     return (
-        <article className="post">
-          <PostSidebar post={post} />
-          <div className="post-main">
-            <PostMain post={post} />
+        <article className="single">
+          <div className="post">
+            <PostSidebar post={post} />
+            <div className="post-main">
+              <PostMain post={post} />
+            </div>
+          </div>
             {post.id &&
               <CommentList
                 postComments={postComments}
                 postId={post.id} />  }
-          </div>
+
         </article>
     )
   }
