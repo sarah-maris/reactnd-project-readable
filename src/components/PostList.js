@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PostSummary from './PostSummary'
-import { loadPosts } from '../actions'
+import { loadPosts, setCategory } from '../actions'
 import AddPost from './AddPost'
 import { withRouter } from 'react-router-dom'
 
@@ -9,23 +9,21 @@ class PostList extends Component {
 
   state = {
     posts: [],
-    // set default categoy to "all"
-    category: this.props.match.url.slice(1) || 'all',
     listState: {}
   }
 
+  setCat = (catName) => this.props.changeCat(catName)
+
   componentDidMount() {
-    console.log(this.props)
-    this.props.getPosts(this.state.category)
+    this.props.getPosts(this.props.listState.category)
   }
 
-
   componentWillReceiveProps({location}) {
-
-    const path = this.props.location.pathname
-    if(location.pathname !== path) {
-        this.setState({category: location.pathname.slice(1) })
-        this.props.getPosts(location.pathname.slice(1))
+    const newCat = location.pathname !== '/'? location.pathname.slice(1) : 'all'
+    const oldCat = this.props.listState.category
+    if(newCat !== oldCat) {
+      this.setCat(newCat)
+      this.props.getPosts(newCat)
     }
   }
 
@@ -60,15 +58,15 @@ class PostList extends Component {
         return posts
 
         case "titleDown" :
-         posts.sort((a, b) => {
+          posts.sort((a, b) => {
            const aTitle=a.title.toLowerCase(), bTitle=b.title.toLowerCase()
            if (aTitle < bTitle)
                return 1
            if (aTitle > bTitle)
                return -1
            return 0
-         })
-         return posts
+          })
+          return posts
 
         default :
           return posts
@@ -100,6 +98,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    changeCat: (category) => dispatch(setCategory(category)),
     getPosts: (category) => dispatch(loadPosts(category))
   }
 }

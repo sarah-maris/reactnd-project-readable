@@ -113,7 +113,7 @@ const getCategoryPosts = (posts) => {
 }
 
 export const loadPosts = (category) => {
-  if (category === 'all') {
+  if (!category || category === 'all') {
     return dispatch => {
       fetch(`${ api }posts`, {headers})
         .then(res => {
@@ -155,14 +155,7 @@ export const getPost = (postId) => {
     .catch( error => showError(error));
   }
 }
-/*************************************** NOT USED
-export function getCommentDetails(commentId) {
-  return {
-    type: GET_COMMENT_DETAILS,
-    commentId
-  }
-}
-*/
+
 // requests to add data
 const addPost = (post) => {
   return {

@@ -32,7 +32,7 @@ class App extends Component {
                 <Sidebar />
               </div>
               <section className="posts-display">
-                <PostList category={'all'}/>
+                <PostList />
               </section>
             </main>
           )}/>
@@ -43,7 +43,7 @@ class App extends Component {
                 <Sidebar />
               </div>
               <section className="posts-display">
-                <PostList {...props}/>
+                <PostList />
               </section>
             </main>
           )}/>
