@@ -13,6 +13,10 @@ header {
   justify-content: center;
 }
 
+.home-link {
+  text-decoration: none;
+}
+
 .title-block {
   margin: 0.5em;
 }

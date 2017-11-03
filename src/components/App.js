@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Link } from 'react-router-dom'
 import PostList from './PostList'
 import logo from '../images/logo.png'
 import Sidebar from './Sidebar'
@@ -16,8 +16,10 @@ class App extends Component {
             <img className="logo" src={logo} alt="logo" />
           </div>
           <div className="title-block">
-            <h1  className="app-title">ChitChat</h1>
-            <h3  className="app-subtitle">What's on your mind?</h3>
+            <Link className="home-link" to="/">
+              <h1  className="app-title">ChitChat</h1>
+              <h3  className="app-subtitle">What's on your mind?</h3>
+            </Link>
           </div>
         </header>
         <hr className="teal line"/>
