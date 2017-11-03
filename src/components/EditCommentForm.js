@@ -1,9 +1,9 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import React from 'react'
+import { Field, reduxForm } from 'redux-form'
 
 const validate = values => {
 
-    const errors = {};
+    const errors = {}
 
     if (!values.body) {
         errors.body = 'At least some text'
