@@ -18,7 +18,9 @@ import {
   VOTE_POST,
   VOTE_COMMENT,
   INCREMENT_COMMENTS,
-  DECREMENT_COMMENTS
+  DECREMENT_COMMENTS,
+  API_ERROR,
+  NOT_FOUND_ERROR
 } from '../actions'
 
 function posts(state = [], action) {
@@ -124,8 +126,8 @@ function comments(state = {}, action) {
 function categories(state = [], action) {
 
   switch (action.type) {
-    case GET_CATEGORIES:
 
+    case GET_CATEGORIES:
       return [{name: 'all', path:'all'}].concat(action.categories.categories)
 
     default:
@@ -133,14 +135,21 @@ function categories(state = [], action) {
   }
 }
 
-function listState (state = { category: 'all', sortType: 'votesUp' } , action) {
+function listState (state = { category: 'all', sortType: 'votesUp', error: {} } , action) {
 
   switch (action.type) {
+
     case SET_CATEGORY:
       return { ...state, category:action.category }
 
     case SET_SORT:
       return  { ...state, sortType:action.sortType }
+
+    case API_ERROR:
+      return { ...state, error: { type: action.requestType, id: action.requestId }}
+
+    case NOT_FOUND_ERROR:
+      return { ...state, error: { type: action.requestType, id: action.requestId }}
 
     default:
       return state

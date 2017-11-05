@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Switch, Link } from 'react-router-dom'
 import PostList from './PostList'
-import FourOhFour from './FourOhFour'
+import NotFound from './NotFound'
 import logo from '../images/logo.png'
 import Sidebar from './Sidebar'
 import SinglePost from './SinglePost'
@@ -27,7 +27,6 @@ class App extends Component {
         <hr className="gray line"/>
         <hr className="blue line"/>
         <Switch>
-
           <Route exact path='/' render={(props) => (
             <main>
               <div className="sidebar">
@@ -38,6 +37,7 @@ class App extends Component {
               </section>
             </main>
           )}/>
+          <Route path='/notfound' component={ NotFound } />
           <Route path='/:category/:postId' render={(props) => <SinglePost {...props} />} />
           <Route  path='/:category' render={(props) => (
             <main>
@@ -49,7 +49,7 @@ class App extends Component {
               </section>
             </main>
           )}/>
-          <Route component={ FourOhFour } />
+
         </Switch>
       </div>
     );

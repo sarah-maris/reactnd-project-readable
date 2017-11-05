@@ -137,6 +137,7 @@ main {
   font-size: 16px;
   font-style: italic;
 }
+
 button:hover {
   background: #91B9E5;
   text-decoration: none;
@@ -499,6 +500,22 @@ button:hover {
   text-decoration: none;
 }
 
+.not-available {
+  font: 1.25em 'McLaren', cursive;
+  margin-top: 0;
+  text-align: center;
+}
+
+.try-again {
+  color: #1e7981;
+  font: 1.5em 'Ribeye', cursive;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.try-again:hover {
+    color: #808080;
+}
 @media screen and (min-width: 414px) and (max-width: 736px) {
   .title-block {
     margin: 0.5em;

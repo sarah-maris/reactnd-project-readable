@@ -4,7 +4,8 @@ import PostMain from './PostMain'
 import CommentList from './CommentList'
 import { connect } from 'react-redux'
 import { loadPostComments, getPost } from '../actions'
-
+import { Route, withRouter } from 'react-router-dom'
+import NotFound from './NotFound'
 
 class SinglePost extends Component {
 
@@ -13,39 +14,47 @@ class SinglePost extends Component {
   }
 
   componentDidMount() {
+    this.props.loadPost(this.state.postId)
     this.props.loadComments(this.state.postId)
-    this.props.loadPost(this.state.postId);
   }
 
   deletePost =(postId) => this.props.destroyPost(postId)
 
   render() {
-   const { posts, comments } = this.props
+    const { posts, comments, listState } = this.props
     const post = posts[0] || {}
     const postComments = comments[post.id] || []
 
     return (
-        <article className="single">
-          <div className="post">
-            <PostSidebar post={post} />
-            <div className="post-main">
-              <PostMain post={post} />
+      <div>
+        {
+          listState.error.type ? (
+            <Route component={ NotFound } />
+          ) : (
+            <article className="single">
+              <div className="post">
+                <PostSidebar post={post} />
+                <div className="post-main">
+                  <PostMain post={post} />
+                </div>
+              </div>
+              {post.id &&
+                <CommentList
+                  postComments={postComments}
+                  postId={post.id} />
+              }
+            </article>
+            )}
             </div>
-          </div>
-            {post.id &&
-              <CommentList
-                postComments={postComments}
-                postId={post.id} />  }
-
-        </article>
-    )
-  }
-}
+        )
+      }
+    }
 
 const mapStateToProps = (state) => {
   return {
     comments: state.comments,
-    posts: state.posts
+    posts: state.posts,
+    listState: state.listState
   }
 }
 
@@ -56,7 +65,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(SinglePost)
+)(SinglePost))
