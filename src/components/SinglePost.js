@@ -4,18 +4,25 @@ import PostMain from './PostMain'
 import CommentList from './CommentList'
 import { connect } from 'react-redux'
 import { loadPostComments, getPost } from '../actions'
-import { Route, withRouter } from 'react-router-dom'
+import { Route, withRouter, Redirect } from 'react-router-dom'
 import NotFound from './NotFound'
 
 class SinglePost extends Component {
 
   state = {
-    postId: this.props.match.params.postId
+    postId: this.props.match.params.postId,
+    cat: '',
+    catPath: ''
   }
 
   componentDidMount() {
     this.props.loadPost(this.state.postId)
     this.props.loadComments(this.state.postId)
+  }
+
+  componentWillReceiveProps({location}) {
+    this.state.catPath = location.pathname.substr(0, location.pathname.lastIndexOf("/"))
+    this.state.cat = location.pathname.split('/')[1];
   }
 
   deletePost =(postId) => this.props.destroyPost(postId)
@@ -25,11 +32,14 @@ class SinglePost extends Component {
     const post = posts[0] || {}
     const postComments = comments[post.id] || []
 
-    return (
+    if (!post.id) return (
+      <Redirect to={{ pathname: this.state.catPath}}/>
+     )
+   else return (
       <div>
         {
-          listState.error.type ? (
-            <Route component={ NotFound } />
+          !post.id? (
+            <Route component={ NotFound }/>
           ) : (
             <article className="single">
               <div className="post">
