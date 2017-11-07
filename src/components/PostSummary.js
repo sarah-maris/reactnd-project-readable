@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PostSidebar from './PostSidebar'
+import PostChange from './PostChange'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import formatDate from '../utils/helpers.js'
@@ -28,6 +29,7 @@ class PostSummary extends Component {
                   <div className="timestamp">{formatDate(post.timestamp)}</div>
                 </div>
               </Link>
+              <PostChange post={ post } />
             </div>
           </div>
         </article>
