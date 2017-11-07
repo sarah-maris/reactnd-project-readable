@@ -110,7 +110,7 @@ class AddPostForm extends Component {
           label="Category"
         >
           {categories.filter((category) =>
-          category.name !== "all") .map((category, index) => (
+          category.name !== "all").map((category, index) => (
             <option
               value={category.name}
               key={index}>{category.name}
