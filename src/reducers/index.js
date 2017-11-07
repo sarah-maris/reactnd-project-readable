@@ -18,9 +18,7 @@ import {
   VOTE_POST,
   VOTE_COMMENT,
   INCREMENT_COMMENTS,
-  DECREMENT_COMMENTS,
-  API_ERROR,
-  NOT_FOUND_ERROR
+  DECREMENT_COMMENTS
 } from '../actions'
 
 function posts(state = [], action) {
@@ -144,12 +142,6 @@ function listState (state = { category: 'all', sortType: 'votesUp', error: {} } 
 
     case SET_SORT:
       return  { ...state, sortType:action.sortType }
-
-    case API_ERROR:
-      return { ...state, error: { type: action.requestType, id: action.requestId }}
-
-    case NOT_FOUND_ERROR:
-      return { ...state, error: { type: action.requestType, id: action.requestId }}
 
     default:
       return state

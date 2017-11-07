@@ -18,8 +18,6 @@ export const DELETE_POST_COMMENTS = 'DELETE_POST_COMMENTS'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const INCREMENT_COMMENTS = 'INCREMENT_COMMENTS'
 export const DECREMENT_COMMENTS = 'DECREMENT_COMMENTS'
-export const NOT_FOUND_ERROR = 'NOT_FOUND_ERROR'
-export const API_ERROR = "API_ERROR"
 
 // API params
 const api = "http://localhost:5001/"
@@ -28,22 +26,8 @@ const headers = {
   'Content-Type': 'application/json'
 }
 /* API request error handling */
-const showError = (requestType, requestId, error) => {
-
-  return {
-    type: API_ERROR,
-    requestType,
-    requestId,
-  }
-}
-
-const showNotFound = (requestType, requestId) => {
-  return {
-    type: NOT_FOUND_ERROR,
-    requestType,
-    requestId
-  }
-}
+const showError = (error) =>
+  console.log('fetch failed: ' , error.statusText);
 
 // load posts
 const getAllPosts = (posts) => {
@@ -167,13 +151,7 @@ export const getPost = (postId) => {
           throw res
         } else  return res.json()
       })
-    .then(post => {
-      console.log(post)
-      if (Object.keys(post).length === 0 && post.constructor === Object) {
-        console.log("no post")
-        dispatch(showNotFound('post', postId))
-      } else dispatch(getPostDetails(post))
-    })
+    .then(post => dispatch(getPostDetails(post)))
     .catch( error => showError(error));
   }
 }
