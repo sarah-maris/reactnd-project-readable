@@ -77,13 +77,16 @@ class PostList extends Component {
     return (
       <section className="posts-list">
         <AddPost />
-        {
+        { posts.length > 0 ?
           sortPosts().map((post) => (
             <PostSummary
               post={post}
               key={post.id}
             />
-        ))}
+          )) : <div className="not-available">
+            No posts are available.  <br/>
+            <em>Please start a new conversation.</em>
+          </div>}
       </section>
     )
   }
