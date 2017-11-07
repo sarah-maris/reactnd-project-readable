@@ -11,8 +11,7 @@ class SinglePost extends Component {
 
   state = {
     postId: this.props.match.params.postId,
-    cat: '',
-    catPath: ''
+    backPath: ''
   }
 
   componentDidMount() {
@@ -21,19 +20,19 @@ class SinglePost extends Component {
   }
 
   componentWillReceiveProps({location}) {
-    this.state.catPath = location.pathname.substr(0, location.pathname.lastIndexOf("/"))
-    this.state.cat = location.pathname.split('/')[1];
+    const redirectPath = location.pathname.substr(0, location.pathname.lastIndexOf("/"))
+    this.setState({backPath: redirectPath})
   }
 
   deletePost =(postId) => this.props.destroyPost(postId)
 
   render() {
-    const { posts, comments, listState } = this.props
+    const { posts, comments } = this.props
     const post = posts[0] || {}
     const postComments = comments[post.id] || []
 
     if (!post.id) return (
-      <Redirect to={{ pathname: this.state.catPath}}/>
+      <Redirect to={{ pathname: this.state.backPath}}/>
      )
    else return (
       <div>
@@ -63,8 +62,7 @@ class SinglePost extends Component {
 const mapStateToProps = (state) => {
   return {
     comments: state.comments,
-    posts: state.posts,
-    listState: state.listState
+    posts: state.posts
   }
 }
 
