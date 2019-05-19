@@ -1,20 +1,19 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import AddPostForm from './AddPostForm'
-import { sendPost } from '../actions'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import AddPostForm from './AddPostForm';
+import { sendPost } from '../actions';
 import { reset } from 'redux-form';
-import Modal from 'react-modal'
+import Modal from 'react-modal';
 
 class AddPost extends Component {
-
   state = {
     postModalOpen: false
-  }
+  };
 
-  openAddPostModal = () => this.setState(() => ({ postModalOpen: true }))
-  closeAddPostModal = () => this.setState(() => ({ postModalOpen: false }))
+  openAddPostModal = () => this.setState(() => ({ postModalOpen: true }));
+  closeAddPostModal = () => this.setState(() => ({ postModalOpen: false }));
 
-  addPost = (post) => {
+  addPost = post => {
     // to create unique IDs for new posts
     const uuidv1 = require('uuid/v1');
     const newPost = {
@@ -24,52 +23,50 @@ class AddPost extends Component {
       body: post.body,
       author: post.author,
       category: post.category
-    }
-    this.props.addNewPost(newPost)
-    this.props.resetPostForm()
-    this.closeAddPostModal()
-  }
+    };
+    this.props.addNewPost(newPost);
+    this.props.resetPostForm();
+    this.closeAddPostModal();
+  };
 
   render() {
-    const { postModalOpen } = this.state
+    const { postModalOpen } = this.state;
 
     return (
-    <div>
-      <Modal
-        className='modal'
-        overlayClassName='overlay'
-        isOpen={postModalOpen}
-        onRequestClose={this.closeAddPostModal}
-        contentLabel='Modal'
-      >
-        <div className="close-click" onClick={this.closeAddPostModal}>X</div>
-        {postModalOpen && <AddPostForm onSubmit={this.addPost} />}
-      </Modal>
-      <button onClick={this.openAddPostModal} className="start-new">
-        <div className="add-post icon"></div>
-        <div className="add-post-text">Start a new conversation</div>
-      </button>
-
-    </div>
-
-    )
+      <div>
+        <Modal
+          className="modal"
+          overlayClassName="overlay"
+          isOpen={postModalOpen}
+          onRequestClose={this.closeAddPostModal}
+          contentLabel="Modal"
+        >
+          <div className="close-click" onClick={this.closeAddPostModal}>
+            X
+          </div>
+          {postModalOpen && <AddPostForm onSubmit={this.addPost} />}
+        </Modal>
+        <button onClick={this.openAddPostModal} className="start-new">
+          <div className="add-post icon" />
+          <div className="add-post-text">Start a new conversation</div>
+        </button>
+      </div>
+    );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
+  return {};
+};
+
+const mapDispatchToProps = dispatch => {
   return {
-
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addNewPost: (post) => dispatch(sendPost(post)),
-    resetPostForm:() => dispatch(reset('addPostForm')),
-  }
-}
+    addNewPost: post => dispatch(sendPost(post)),
+    resetPostForm: () => dispatch(reset('addPostForm'))
+  };
+};
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddPost)
+)(AddPost);

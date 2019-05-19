@@ -37,7 +37,7 @@ header {
 
 .logo {
   max-width: 100px;
-  width: 100%
+  width: 100%;
 }
 
 /* divider */
@@ -97,7 +97,7 @@ main {
 
 .add-post-text,
 .add-comment-text {
-  font-size:  24px;
+  font-size: 24px;
   font-weight: bold;
   line-height: 50px;
   margin-left: 20px;
@@ -139,7 +139,7 @@ main {
 }
 
 button:hover {
-  background: #91B9E5;
+  background: #91b9e5;
   text-decoration: none;
 }
 
@@ -194,11 +194,11 @@ button:hover {
 }
 
 .single {
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
   max-width: 1000px;
   margin: auto;
-  width:90%;
+  width: 90%;
 }
 
 .post {
@@ -230,7 +230,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  justify-content:space-between;
+  justify-content: space-between;
   padding: 10px 20px 0 20px;
 }
 
@@ -238,7 +238,7 @@ button:hover {
 .comment-changes {
   display: flex;
   flex-direction: row;
-  justify-content:space-between;
+  justify-content: space-between;
 }
 .post-changes {
   margin: 10px 0 15px;
@@ -271,7 +271,10 @@ button:hover {
   flex-basis: 100%;
 }
 
-.post-body, .author, .timestamp, .category {
+.post-body,
+.author,
+.timestamp,
+.category {
   margin: 10px 0;
 }
 
@@ -316,19 +319,19 @@ button:hover {
 }
 
 .edit-white {
-    background-image: url('./images/edit-white.svg');
+  background-image: url('./images/edit-white.svg');
 }
 
 .delete-white {
-    background-image: url('./images/delete-white.svg');
+  background-image: url('./images/delete-white.svg');
 }
 
 .edit-blue {
-    background-image: url('./images/edit.svg');
+  background-image: url('./images/edit.svg');
 }
 
 .delete-blue {
-    background-image: url('./images/delete.svg');
+  background-image: url('./images/delete.svg');
 }
 
 .votes {
@@ -339,7 +342,7 @@ button:hover {
   height: 50px;
   line-height: 50px;
   text-align: center;
-  width: 50px
+  width: 50px;
 }
 
 .votes-blue {
@@ -350,7 +353,7 @@ button:hover {
   height: 50px;
   line-height: 50px;
   text-align: center;
-  width: 50px
+  width: 50px;
 }
 
 .voting {
@@ -371,8 +374,8 @@ button:hover {
   padding: 40px 0;
 }
 .comments-icon-white {
-    background-image: url('./images/solid-bubble-message-white.svg');
-    color: #808080;
+  background-image: url('./images/solid-bubble-message-white.svg');
+  color: #808080;
 }
 
 .comments-list {
@@ -387,7 +390,7 @@ button:hover {
 }
 
 .comment-body {
-  border:  3px solid #1e4d81;
+  border: 3px solid #1e4d81;
   border-radius: 10px;
   margin: 0 0 5px;
   padding: 10px;
@@ -395,7 +398,7 @@ button:hover {
 }
 
 .comment-data {
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -416,7 +419,7 @@ button:hover {
 .modal {
   background: rgb(255, 255, 255);
   border: 1px solid rgb(204, 204, 204);
-  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, .24), 0 3px 12px 0 rgba(0, 0, 0, .12);
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.24), 0 3px 12px 0 rgba(0, 0, 0, 0.12);
   border-radius: 10px;
   min-width: 300px;
   overflow: auto;
@@ -428,7 +431,7 @@ button:hover {
   transform: translate(-50%, -50%);
 }
 
-form>div {
+form > div {
   margin-top: 10px;
 }
 
@@ -469,7 +472,6 @@ button {
   transition-duration: 0.4s;
 }
 
-
 .post-form-button {
   background: #808080;
 }
@@ -486,7 +488,8 @@ button {
   background: #83b0e2;
 }
 
-.post-form-body, .comment-form-body {
+.post-form-body,
+.comment-form-body {
   height: 75px;
   min-width: 275px;
 }
@@ -514,7 +517,7 @@ button:hover {
 }
 
 .try-again:hover {
-    color: #808080;
+  color: #808080;
 }
 @media screen and (min-width: 414px) and (max-width: 736px) {
   .title-block {

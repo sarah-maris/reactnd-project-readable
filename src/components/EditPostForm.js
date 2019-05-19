@@ -1,21 +1,20 @@
-import React, { Component } from 'react'
-import { Field, reduxForm } from 'redux-form'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 
 const validate = values => {
+  const errors = {};
 
-    const errors = {};
+  if (!values.title) {
+    errors.title = 'Post title';
+  }
 
-    if (!values.title) {
-        errors.title = 'Post title'
-    }
+  if (!values.body) {
+    errors.body = 'At least some text';
+  }
 
-    if (!values.body) {
-        errors.body = 'At least some text'
-    }
-
-    return errors
-}
+  return errors;
+};
 
 const renderInputField = ({
   input,
@@ -24,38 +23,50 @@ const renderInputField = ({
   type,
   className,
   meta: { touched, error }
-}) =>
+}) => (
   <div>
-    <label>{ label }</label>
+    <label>{label}</label>
     <div>
-      <input { ...input } placeholder={ placeholder } type={ type } className={ className }/>
-      { touched && error &&
-        <div className="error">{`*${error} is required!`} </div> }
+      <input
+        {...input}
+        placeholder={placeholder}
+        type={type}
+        className={className}
+      />
+      {touched && error && (
+        <div className="error">{`*${error} is required!`} </div>
+      )}
     </div>
   </div>
+);
 
-  const renderTextareaField = ({
-    input,
-    label,
-    placeholder,
-    type,
-    className,
-    meta: { touched, error }
-  }) =>
+const renderTextareaField = ({
+  input,
+  label,
+  placeholder,
+  type,
+  className,
+  meta: { touched, error }
+}) => (
+  <div>
+    <label>{label}</label>
     <div>
-      <label>{ label }</label>
-      <div>
-        <textarea { ...input } placeholder={ placeholder } type={ type } className={ className }/>
-        { touched && error &&
-          <div className="error">{`*${error} is required!`} </div> }
-      </div>
+      <textarea
+        {...input}
+        placeholder={placeholder}
+        type={type}
+        className={className}
+      />
+      {touched && error && (
+        <div className="error">{`*${error} is required!`} </div>
+      )}
     </div>
+  </div>
+);
 
 class EditPostForm extends Component {
-
   render() {
-
-    const { handleSubmit } = this.props
+    const { handleSubmit } = this.props;
 
     return (
       <form onSubmit={handleSubmit} className="post-form">
@@ -76,24 +87,24 @@ class EditPostForm extends Component {
           label="My Two Cents"
         />
         <div>
-          <button type="submit" className="post-form-button">Submit</button>
+          <button type="submit" className="post-form-button">
+            Submit
+          </button>
         </div>
       </form>
-      )
+    );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     categories: state.categories
-  }
-}
+  };
+};
 
-EditPostForm = connect(
-  mapStateToProps
-)(EditPostForm)
+EditPostForm = connect(mapStateToProps)(EditPostForm);
 
 export default reduxForm({
   form: 'postForm',
   validate
-})(EditPostForm)
+})(EditPostForm);
