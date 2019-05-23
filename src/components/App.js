@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 import PostList from './PostList';
 import NotFound from './NotFound';
-import logo from '../images/logo.png';
+import logo from '../images/chitchat-logo.jpg';
 import Sidebar from './Sidebar';
 import SinglePost from './SinglePost';
 

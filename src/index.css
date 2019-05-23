@@ -1,5 +1,5 @@
 body {
-  color: #808080;
+  color: #0081d9;
   font-family: sans-serif;
   margin: 0;
   padding: 0;
@@ -22,14 +22,14 @@ header {
 }
 
 .app-title {
-  color: #1e7981;
+  color: #ee3e37;
   font: 2.5em 'Ribeye', cursive;
   margin-bottom: 0;
   text-align: center;
 }
 
 .app-subtitle {
-  color: #1e4d81;
+  color: #03d1ab;
   font: 1.25em 'McLaren', cursive;
   margin-top: 0;
   text-align: center;
@@ -43,15 +43,15 @@ header {
 /* divider */
 
 .blue {
-  box-shadow: inset 0 22px 30px -15px rgba(30, 77, 129, 0.75);
+  box-shadow: inset 0 22px 30px -15px rgba(3, 209, 171, 0.75);
 }
 
 .teal {
-  box-shadow: inset 0 22px 30px -15px rgba(30, 121, 129, 0.75);
+  box-shadow: inset 0 22px 30px -15px rgba(238, 62, 55, 0.75);
 }
 
 .gray {
-  box-shadow: inset 0 22px 30px -15px rgba(122, 122, 122, 0.75);
+  box-shadow: inset 0 22px 30px -15px rgba(0, 129, 217, 0.75);
 }
 
 .line {
@@ -80,15 +80,15 @@ main {
 
 .start-new {
   background: #fff;
-  border: 3px solid #1e4d81;
-  color: #1e4d81;
+  border: 3px solid #03d1ab;
+  color: #03d1ab;
   display: flex;
   margin-bottom: 20px;
   width: 100%;
 }
 
 .join-in {
-  background: #1e7981;
+  background: #ee3e37;
   color: #fff;
   display: flex;
   margin-bottom: 20px;
@@ -114,7 +114,7 @@ main {
 }
 
 .cat-button {
-  background: #1e4d81;
+  background: #03d1ab;
   border: 0;
   -webkit-border-radius: 10;
   -moz-border-radius: 10;
@@ -133,7 +133,7 @@ main {
   top: 20px;
 }
 .error {
-  color: red;
+  color: #ee3e37;
   font-size: 16px;
   font-style: italic;
 }
@@ -144,7 +144,7 @@ button:hover {
 }
 
 .selected-cat {
-  background: #1e7981;
+  background: #ee3e37;
 }
 
 .order-title {
@@ -172,7 +172,7 @@ button:hover {
 }
 
 .sort-text {
-  background-color: #808080;
+  background-color: #0081d9;
   border-radius: 10px;
   color: #fff;
   width: 175px;
@@ -209,20 +209,20 @@ button:hover {
 }
 
 .post-main {
-  border: 3px solid #808080;
+  border: 3px solid #0081d9;
   border-radius: 10px;
   flex-grow: 1;
 }
 
 .post-link {
+  display: block;
   color: #fff;
   text-decoration: none;
   width: 100%;
-  display: block;
 }
 
 .post-header {
-  background: #808080;
+  background: #0081d9;
 }
 
 .post-header,
@@ -279,7 +279,7 @@ button:hover {
 }
 
 .post-body {
-  color: #808080;
+  color: #0081d9;
   padding: 20px;
 }
 
@@ -375,22 +375,22 @@ button:hover {
 }
 .comments-icon-white {
   background-image: url('./images/solid-bubble-message-white.svg');
-  color: #808080;
+  color: #0081d9;
 }
 
 .comments-list {
-  color: #808080;
+  color: #0081d9;
 }
 
 /* comments */
 
 .comment {
+  color: #03d1ab;
   display: flex;
-  color: #1e4d81;
 }
 
 .comment-body {
-  border: 3px solid #1e4d81;
+  border: 3px solid #03d1ab;
   border-radius: 10px;
   margin: 0 0 5px;
   padding: 10px;
@@ -408,7 +408,7 @@ button:hover {
 /* modal */
 
 .overlay {
-  background-color: rgba(30, 121, 129, 0.75);
+  background-color: rgba(238, 62, 55, 0.75);
   position: fixed;
   top: 0;
   right: 0;
@@ -439,28 +439,28 @@ form > div {
 .post-form-title,
 .post-form-category,
 .post-form-body {
-  border: 1px solid #808080;
+  border: 1px solid #0081d9;
   border-radius: 3px;
-  color: #808080;
+  color: #0081d9;
   font: 16px monospace;
 }
 
 .comment-form {
-  color: #1e4d81;
+  color: #03d1ab;
 }
 
 .comment-form-author,
 .comment-form-title,
 .comment-form-category,
 .comment-form-body {
-  border: 1px solid #1e4d81;
+  border: 1px solid #03d1ab;
   border-radius: 3px;
-  color: #1e4d81;
+  color: #03d1ab;
   font-family: monospace;
 }
 
 button {
-  background: #1e4d81;
+  background: #03d1ab;
   border: 0;
   -webkit-border-radius: 10;
   -moz-border-radius: 10;
@@ -473,7 +473,7 @@ button {
 }
 
 .post-form-button {
-  background: #808080;
+  background: #0081d9;
 }
 
 .post-form-button:hover {
@@ -481,11 +481,11 @@ button {
 }
 
 .comment-form-button {
-  background: #1e4d81;
+  background: #03d1ab;
 }
 
 .comment-form-button:hover {
-  background: #83b0e2;
+  background: #afdfff;
 }
 
 .post-form-body,
@@ -499,7 +499,7 @@ button {
 }
 
 button:hover {
-  background: #83b0e2;
+  background: #afdfff;
   text-decoration: none;
 }
 
@@ -510,14 +510,14 @@ button:hover {
 }
 
 .try-again {
-  color: #1e7981;
+  color: #ee3e37;
   font: 1.5em 'Ribeye', cursive;
   margin-bottom: 0;
   text-align: center;
 }
 
 .try-again:hover {
-  color: #808080;
+  color: #0081d9;
 }
 @media screen and (min-width: 414px) and (max-width: 736px) {
   .title-block {
@@ -590,3 +590,19 @@ button:hover {
     margin-left: 60px;
   }
 }
+
+/* original scolors
+  #ccc
+  #808080 rgba(122, 122, 122, 0.75)
+  #1e7981 rgba(30, 121, 129, 0.75)
+  #83b0e2;
+  #1e4d81  rgba(30, 77, 129, 0.75)
+  */
+
+/* updated colors
+#cccs
+#0081d9 rgba(0, 129, 217, 0.75)
+#ee3e37 rgba(238, 62, 55, 0.75)
+#afdfff;
+#03d1ab  rgba(3, 209, 171, 0.75)
+*/
