@@ -20,7 +20,7 @@ export const INCREMENT_COMMENTS = 'INCREMENT_COMMENTS';
 export const DECREMENT_COMMENTS = 'DECREMENT_COMMENTS';
 
 // API params
-const api = 'http://localhost:5001/';
+const api = 'https://chit-chat-server.herokuapp.com/';
 const headers = {
   Authorization: 'myToken1234',
   'Content-Type': 'application/json'

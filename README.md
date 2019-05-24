@@ -17,27 +17,15 @@ git clone https://github.com/sarah-maris/reactnd-project-readable.git
 npm install
 ```
 
-Next, install the server. Navigate to the `server` directory of the project and run
-
-```
-npm install
-```
-
-When the dependencies are installed you can run the server by entering:
-
-```
-node server
-```
-
-The server will listen on port 5001
-
-Next, open a new shell window in the root directory of the project and run
+Start the development server by running
 
 ```
 npm start
 ```
 
-A new browser window should automatically open displaying the app. If it doesn't, navigate to [http://localhost:3000/](http://localhost:3000/) in your browser
+A new browser window should automatically open displaying the app. If it doesn't, navigate to [http://localhost:3000/](http://localhost:3000/) in your browser.
+
+The project runs on a server hosted at Heroku: https://chit-chat-server.herokuapp.com/
 
 ## How to Use the App
 
