@@ -19,7 +19,7 @@ export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const INCREMENT_COMMENTS = 'INCREMENT_COMMENTS';
 export const DECREMENT_COMMENTS = 'DECREMENT_COMMENTS';
 
-// API params
+// API params -- use server hosted at heroku
 const api = 'https://chit-chat-server.herokuapp.com/';
 const headers = {
   Authorization: 'myToken1234',
