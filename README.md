@@ -29,7 +29,11 @@ npm start
 
 A new browser window should automatically open displaying the app. If it doesn't, navigate to [http://localhost:3000/](http://localhost:3000/) in your browser.
 
-The project runs on a server hosted at Heroku: https://chit-chat-server.herokuapp.com/
+## API Data
+
+The project uses data from an API server hosted at Heroku: https://chit-chat-server.herokuapp.com/
+
+You can also use a local server using the code here: **[Udacity Readable API Server](https://github.com/udacity/reactnd-project-readable-starter)**
 
 ## How to Use the App
 
